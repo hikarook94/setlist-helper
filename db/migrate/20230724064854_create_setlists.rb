@@ -6,5 +6,6 @@ class CreateSetlists < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+    add_index :setlists, :title, unique: true
   end
 end
