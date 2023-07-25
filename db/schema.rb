@@ -22,7 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_010924) do
 
   create_table "setlists", charset: "utf8mb4", force: :cascade do |t|
     t.string "title", null: false
-    t.integer "target_duration_time", default: 0, null: false
+    t.integer "target_duration_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["title"], name: "index_setlists_on_title", unique: true
@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_010924) do
     t.string "name", null: false
     t.string "artist", null: false
     t.integer "duration_time", null: false
-    t.text "memo", null: false
+    t.text "memo"
     t.integer "transposition", limit: 1, default: 0, null: false
     t.string "cover_img", default: "", null: false
     t.datetime "created_at", null: false
