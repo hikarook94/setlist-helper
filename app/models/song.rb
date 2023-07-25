@@ -1,5 +1,6 @@
 class Song < ApplicationRecord
   has_many :scores
+  has_many :song_setlists
   has_many :setlists, through: :song_setlists
 
   validates :name, presence: true
