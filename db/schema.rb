@@ -13,7 +13,7 @@
 ActiveRecord::Schema[7.0].define(version: 2023_07_25_010924) do
   create_table "scores", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "song_id", null: false
-    t.float "rating"
+    t.float "rating", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["rating"], name: "index_scores_on_rating"
