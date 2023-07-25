@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_25_005740) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_25_010924) do
+  create_table "scores", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "song_id", null: false
+    t.float "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rating"], name: "index_scores_on_rating"
+    t.index ["song_id"], name: "index_scores_on_song_id"
+  end
+
   create_table "setlists", charset: "utf8mb4", force: :cascade do |t|
     t.string "title", null: false
     t.integer "target_duration_time", default: 0, null: false
@@ -42,6 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_005740) do
     t.index ["name"], name: "index_songs_on_name"
   end
 
+  add_foreign_key "scores", "songs"
   add_foreign_key "song_setlists", "setlists"
   add_foreign_key "song_setlists", "songs"
 end
