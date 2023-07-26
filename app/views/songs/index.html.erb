@@ -1,7 +1,7 @@
 <h1>Songs#index</h1>
 <% @songs.each do |song| %>
   <div>
-    <%= song.name %>
-    <%= song.artist %>
+    <p><%= link_to song.name, song %></p>
+    <p><%= song.artist %><p>
   </div>
 <% end %>
