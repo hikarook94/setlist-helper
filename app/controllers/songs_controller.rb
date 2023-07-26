@@ -2,7 +2,7 @@
 
 class SongsController < ApplicationController
   def index
-    @songs = Song.order(name: :desc)
+    @songs = Song.order(name: :asc)
   end
 
   def show
