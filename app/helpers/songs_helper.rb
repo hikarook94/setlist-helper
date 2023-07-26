@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 module SongsHelper
-  def mitunes_seconds(ms)
-    s = ms / 1000
-    minutes = s / 60
-    seconds = s % 60
-    "#{minutes} 分 #{seconds} 秒"
+  def mitunes_seconds(milli_seconds)
+    seconds = milli_seconds / 1000
+    "#{seconds / 60} 分 #{seconds % 60} 秒"
   end
 end
