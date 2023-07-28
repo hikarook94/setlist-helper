@@ -1,12 +1,8 @@
 <h1>レパートリー</h1>
 
-<div>
-  <button id="sort_by" class="dropdown"><%= "表示：#{@sort_by == 'artists' ? 'アーティスト' : '曲'}" %></button>
-  <div class="dropdown-options" style="">
-    <%= link_to '曲', songs_path(sort_by: 'songs') %>
-    <%= link_to 'アーティスト', songs_path(sort_by: 'artists') %>
-  </div>
-</div>
+<% if !@artist %>
+  <%= select :option, :filter, options_for_select([['曲', songs_path(sort_by: 'songs')], ['アーティスト', songs_path(sort_by: 'artists')]], songs_path({sort_by: @sort_by})), {}, {onchange:"Turbo.visit(value)"} %>
+<% end %>
 
 <% if @sort_by == 'artists' %>
     <% @artists.each do |artist| %>
