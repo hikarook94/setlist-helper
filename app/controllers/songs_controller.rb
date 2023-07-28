@@ -7,7 +7,7 @@ class SongsController < ApplicationController
     if @sort_by == 'artists'
       @artists = Song.distinct.pluck(:artist).sort
     else
-      @songs = params[:filter_by] ? Song.where(artist: params[:filter_by]) : Song.order(name: :asc)
+      @songs = params[:filter_by].present? ? Song.where(artist: params[:filter_by]) : Song.order(name: :asc)
     end
   end
 
