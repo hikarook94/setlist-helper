@@ -6,9 +6,10 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import HelloMessage from './components/App';
 
-const container = document.getElementById('root');
-const root = createRoot(container);
+// /app/views/sites/index.html.erb削除に伴い、エラーがコンソールに表示されるので一旦コメントアウト
+// const container = document.getElementById('root');
+// const root = createRoot(container);
 
-document.addEventListener('DOMContentLoaded', () => {
-  root.render(<HelloMessage name="World" />);
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//   root.render(<HelloMessage name="World" />);
+// });

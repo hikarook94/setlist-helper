@@ -1,9 +1,16 @@
 # frozen_string_literal: true
 
+artists = %w[
+  ロックバンド
+  ボーカルグループ
+  シンガーソングライター
+  アイドルグループ
+]
+
 40.times do |n|
   Song.create!(
     name: "#{n + 1}の歌",
-    artist: "the #{n + 1}s",
+    artist: artists[n % artists.size],
     duration_time: rand(210_000..300_000),
     transposition: rand(-7..7)
   )
