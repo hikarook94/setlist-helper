@@ -1,10 +1,10 @@
 <h1>レパートリー</h1>
 
-<% if !@artist %>
-  <%= select :option, :filter, options_for_select([['曲', songs_path(sort_by: 'songs')], ['アーティスト', songs_path(sort_by: 'artists')]], songs_path({sort_by: @sort_by})), {}, {onchange:"Turbo.visit(value)"} %>
-<% else %>
+<% if @artist %>
   <%= link_to '<', songs_path(sort_by: 'artists') %>
   <%= @artist %>
+<% else %>
+  <%= select :option, :filter, options_for_select([['曲', songs_path(sort_by: 'songs')], ['アーティスト', songs_path(sort_by: 'artists')]], songs_path({sort_by: @sort_by})), {}, {onchange:"Turbo.visit(value)"} %>
 <% end %>
 
 <% if @sort_by == 'artists' %>
