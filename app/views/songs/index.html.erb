@@ -1,7 +1,24 @@
 <h1>レパートリー</h1>
-<% @songs.each do |song| %>
-  <div>
-    <p><%= link_to song.name, song %></p>
-    <p><%= song.artist %><p>
+
+<div>
+  <button id="sort_by" class="dropdown"><%= "表示：#{@sort_by == 'artists' ? 'アーティスト' : '曲'}" %></button>
+  <div class="dropdown-options" style="">
+    <%= link_to '曲', songs_path(sort_by: 'songs') %>
+    <%= link_to 'アーティスト', songs_path(sort_by: 'artists') %>
   </div>
+</div>
+
+<% if @sort_by == 'artists' %>
+    <% @artists.each do |artist| %>
+    <div>
+      <p><%= link_to artist, songs_path(filter_by: artist) %><p>
+    </div>
+  <% end %>
+<% else %>
+  <% @songs.each do |song| %>
+    <div>
+      <p><%= link_to song.name, song %></p>
+      <p><%= song.artist %><p>
+    </div>
+  <% end %>
 <% end %>
