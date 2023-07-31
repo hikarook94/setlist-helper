@@ -28,4 +28,11 @@ class SongsController < ApplicationController
       render :new, :unprocessable_entity
     end
   end
+
+  private
+
+  def song_params
+    params.require(:song).permit(:name, :artist, :minutes, :seconds, :memo)
+  end
+
 end
