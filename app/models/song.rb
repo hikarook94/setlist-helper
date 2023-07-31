@@ -10,4 +10,6 @@ class Song < ApplicationRecord
   validates :artist, presence: true
   validates :duration_time, presence: true
   validates :transposition, numericality: { in: -7..7 }
+
+  mount_uploader :cover_img, CoverUploader
 end
