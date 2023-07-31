@@ -4,4 +4,5 @@
 <h1><%= @song.name %></h1>
 <p><%= @song.artist %></p>
 <p><%= mitunes_seconds(@song.duration_time) %></p>
+<p><%= @song.transposition %></p>
 <%= link_to '戻る', songs_path %>
