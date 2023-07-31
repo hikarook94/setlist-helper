@@ -1,11 +1,13 @@
 <%= form_with model: @song do |form| %>
-  <%= form.label :name, '曲名' %>
-  <%= form.text_field :name %>
-  <%= form.label :artist, 'アーティスト名' %>
-  <%= form.text_field :artist %>
+  <%= form.text_field :name, placeholder:'曲名' %>
+  <%= form.text_field :artist, placeholder:'アーティスト名' %>
   <%= form.text_field :minutes %>
   <%= form.label :minutes, '分' %>
   <%= form.text_field :seconds %>
   <%= form.label :seconds, '秒' %>
+  <%= form.label :transposition, 'キー' %>
+  <%= form.number_field :transposition, in: -7..7, step: 1 %>
+  <%= form.label :memo, 'メモ' %>
+  <%= form.text_area :memo %>
   <%= form.submit '登録する' %>
 <% end %>
