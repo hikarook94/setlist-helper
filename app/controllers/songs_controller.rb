@@ -20,9 +20,9 @@ class SongsController < ApplicationController
   end
 
   def create
-    song_params = song_params()
-    song_params[:duration_time] = to_ms(song_params.delete(:minutes), song_params.delete(:seconds))
-    @song = Song.new(song_params)
+    processed_params = song_params()
+    processed_params[:duration_time] = to_ms(processed_params.delete(:minutes), processed_params.delete(:seconds))
+    @song = Song.new(processed_params)
 
     if @song.save!
       redirect_to @song
@@ -34,7 +34,7 @@ class SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:name, :artist, :minutes, :seconds, :memo, :cover_img)
+    params.require(:song).permit(:name, :artist, :minutes, :seconds, :memo, :cover_img, :transposition)
   end
 
   def to_ms(minutes, seconds)
