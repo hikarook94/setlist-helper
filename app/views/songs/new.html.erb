@@ -9,5 +9,6 @@
   <%= form.number_field :transposition, in: -7..7, step: 1 %>
   <%= form.label :memo, 'メモ' %>
   <%= form.text_area :memo %>
+    <%= form.file_field :cover_img %>
   <%= form.submit '登録する' %>
 <% end %>
