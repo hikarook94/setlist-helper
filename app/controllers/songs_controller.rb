@@ -31,6 +31,22 @@ class SongsController < ApplicationController
     end
   end
 
+  def edit
+    @song = Song.find(params[:id])
+  end
+
+  def update
+    @song = Song.find(params[:id])
+    processed_params = song_params
+    processed_params[:duration_time] = to_ms(processed_params.delete(:minutes), processed_params.delete(:seconds))
+
+    if @song.update(processed_params)
+      redirect_to @song
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def song_params
