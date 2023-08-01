@@ -27,7 +27,7 @@ class SongsController < ApplicationController
     if @song.save!
       redirect_to @song
     else
-      render :new, :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
