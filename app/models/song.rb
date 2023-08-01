@@ -8,7 +8,7 @@ class Song < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: { scope: :artist, case_sensitive: false }
   validates :artist, presence: true
-  validates :duration_time, presence: true, numericality: { only_integer: true }
+  validates :duration_time, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :transposition, numericality: { in: -7..7 }
 
   mount_uploader :cover_img, CoverUploader
