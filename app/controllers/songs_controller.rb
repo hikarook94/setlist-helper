@@ -24,7 +24,7 @@ class SongsController < ApplicationController
     processed_params[:duration_time] = to_ms(processed_params.delete(:minutes), processed_params.delete(:seconds))
     @song = Song.new(processed_params)
 
-    if @song.save!
+    if @song.save
       redirect_to @song
     else
       render :new, status: :unprocessable_entity
