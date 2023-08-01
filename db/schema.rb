@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_010924) do
     t.integer "duration_time", null: false
     t.text "memo"
     t.integer "transposition", limit: 1, default: 0, null: false
-    t.string "cover_img", default: "", null: false
+    t.string "cover_img"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "artist"], name: "index_songs_on_name_and_artist", unique: true
