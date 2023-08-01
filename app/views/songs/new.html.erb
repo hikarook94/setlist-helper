@@ -1,3 +1,13 @@
+<% if @song.errors.any? %>
+  <div>
+    <ul>
+      <% @song.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with model: @song do |form| %>
   <div>
     <%= form.file_field :cover_img %>
