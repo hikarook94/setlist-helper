@@ -20,7 +20,7 @@ class SongsController < ApplicationController
   end
 
   def create
-    processed_params = song_params()
+    processed_params = song_params
     processed_params[:duration_time] = to_ms(processed_params.delete(:minutes), processed_params.delete(:seconds))
     @song = Song.new(processed_params)
 
