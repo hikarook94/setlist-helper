@@ -6,7 +6,7 @@ class CreateSongs < ActiveRecord::Migration[7.0]
       t.integer :duration_time, null: false
       t.text :memo
       t.integer :transposition, null: false, default: 0, limit: 1
-      t.string :cover_img, null: false, default: ''
+      t.string :cover_img
 
       t.timestamps
     end
