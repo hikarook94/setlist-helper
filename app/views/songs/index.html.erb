@@ -16,10 +16,14 @@
   <% end %>
 <% else %>
   <% @songs.each do |song| %>
-    <div>
-      <p><%= link_to song.name, song %></p>
-      <p><%= song.artist %><p>
-      <p><%= link_to '削除', song, data: { turbo_method: :delete } %></p>
+    <div class="mb-3 p-2 flex">
+      <div class="mr-4">
+        <p><%= link_to song.name, song %></p>
+        <p><%= song.artist %><p>
+      </div>
+      <div>
+        <p><%= link_to '削除', song, data: { turbo_method: :delete } %></p>
+      </div>
     </div>
   <% end %>
 <% end %>
