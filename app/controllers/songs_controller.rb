@@ -48,9 +48,10 @@ class SongsController < ApplicationController
   end
 
   def destroy
+    url = URI(request.referer)
     song = Song.find(params[:id])
     song.destroy!
-    redirect_to songs_path(filter_by: @artist)
+    redirect_to songs_path(query_params(url))
   end
 
   private
@@ -62,5 +63,12 @@ class SongsController < ApplicationController
   def to_ms(minutes, seconds)
     total_seconds = seconds.to_i + minutes.to_i * 60
     total_seconds * 1000
+  end
+
+  def query_params(url)
+    return {} if url.query == nil
+
+    query_hash = CGI.parse(url.query)
+    query_hash.transform_values {|value| value.first}
   end
 end
