@@ -3,6 +3,10 @@
 <% end %>
 <h1><%= @song.name %></h1>
 <p><%= @song.artist %></p>
-<p><%= mitunes_seconds(@song.duration_time) %></p>
+<p><%= to_minutes(@song.duration_time) %>分<%= to_remaining_seconds(@song.duration_time) %>秒</p>
 <p><%= @song.transposition %></p>
+<div>
+  <%= @song.memo %>
+</div>
+<%= link_to '編集', edit_song_path %>
 <%= link_to '戻る', songs_path %>
