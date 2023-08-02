@@ -19,10 +19,11 @@
     <%= form.label :transposition, 'キー' %>
     <%= form.number_field :transposition, in: -7..7, step: 1 %>
   </div>
+  <div>
     <%= form.label :memo, 'メモ' %>
     <div>
       <%= form.text_area :memo %>
     </div>
-  <div></div>
+  </div>
   <%= form.submit '登録する' %>
 <% end %>
