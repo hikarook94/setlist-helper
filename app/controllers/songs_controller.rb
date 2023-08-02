@@ -48,10 +48,10 @@ class SongsController < ApplicationController
   end
 
   def destroy
-    url = URI(request.referer)
     song = Song.find(params[:id])
     song.destroy!
     redirect_to songs_path(query_params(url))
+      redirect_to songs_path(query_params(URI(request.referer)))
   end
 
   private
