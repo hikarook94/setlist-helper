@@ -49,9 +49,8 @@ class SongsController < ApplicationController
 
   def destroy
     song = Song.find(params[:id])
-    song.destroy!
-    redirect_to songs_path(query_params(url))
-      redirect_to songs_path(query_params(URI(request.referer)))
+    flash[:alert] = '削除に失敗しました。' unless song.destroy
+    redirect_to songs_path(query_params(URI(request.referer)))
   end
 
   private
