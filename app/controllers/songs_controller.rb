@@ -66,9 +66,9 @@ class SongsController < ApplicationController
   end
 
   def query_params(url)
-    return {} if url.query == nil
+    return {} if url.query.nil?
 
     query_hash = CGI.parse(url.query)
-    query_hash.transform_values {|value| value.first}
+    query_hash.transform_values(&:first)
   end
 end
