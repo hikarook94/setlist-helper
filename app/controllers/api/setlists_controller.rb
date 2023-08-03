@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::SetlistsController < ApplicationController
   def index
     @setlists = Setlist.includes(:songs).all
