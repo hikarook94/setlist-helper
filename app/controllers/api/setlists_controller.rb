@@ -1,6 +1,6 @@
 class Api::SetlistsController < ApplicationController
   def index
-    @setlists = Setlist.all
-    render json: @setlists
+    @setlists = Setlist.includes(:songs).all
+    render json: @setlists.as_json(include: :songs)
   end
 end
