@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom'
 import SetlistsViewer from './SetlistsViewer';
+import SetlistViewer from './SetlistViewer';
 
 const Setlists = () => {
     const [setlists, setSetlists] = useState([]);
@@ -27,7 +29,10 @@ const Setlists = () => {
   return (
     <>
       <h1 className="text-4xl">セットリスト</h1>
-      <SetlistsViewer setlists={setlists} />
+      <Routes>
+        <Route path="" element={<SetlistsViewer setlists={setlists} />} />
+        <Route path="/:id" element={<SetlistViewer setlists={setlists} />} />
+      </Routes>
     </>
   );
 };
