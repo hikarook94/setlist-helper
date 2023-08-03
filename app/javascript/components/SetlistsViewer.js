@@ -5,8 +5,8 @@ const SetlistsViewer = ({ setlists }) => {
   const convertToHours = (milliSeconds) => {
     const minutes = Math.ceil(milliSeconds / 1000) / 60
     const hours = Math.trunc(minutes / 60)
-    const remaining_minutes = Math.ceil(minutes % 60)
-    return `${hours} 時間 ${remaining_minutes} 分`
+    const remainingMinutes = Math.ceil(minutes % 60)
+    return `${hours} 時間 ${remainingMinutes} 分`
   }
 
   const renderSetlists = (setlistArray) => {
