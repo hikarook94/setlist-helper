@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 
 const SetlistsViewer = ({ setlists }) => {
@@ -13,11 +14,13 @@ const SetlistsViewer = ({ setlists }) => {
 
     return setlistArray.map((setlist) => (
       <li key={setlist.id}>
-        <div>{setlist.title}</div>
-        {setlist.songs.length}{' 曲 '}
-        {convertToHours(setlist.songs.reduce((accum, current) => accum + current.duration_time, 0))}
-        {' / '}
-        {convertToHours(setlist.target_duration_time)}
+        <Link to={`/setlists/${setlist.id}`}>
+          <div>{setlist.title}</div>
+          {setlist.songs.length}{' 曲 '}
+          {convertToHours(setlist.songs.reduce((accum, current) => accum + current.duration_time, 0))}
+          {' / '}
+          {convertToHours(setlist.target_duration_time)}
+        </Link>
       </li>
     ));
   };
