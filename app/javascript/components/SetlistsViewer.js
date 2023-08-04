@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types';
 
 const SetlistsViewer = ({ setlists }) => {
   const convertToHours = (milliSeconds) => {
@@ -32,15 +31,6 @@ const SetlistsViewer = ({ setlists }) => {
   );
 };
 
-SetlistsViewer.propTypes = {
-  setlists: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    songs: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-    }))
-  })).isRequired,
 };
 
 export default SetlistsViewer;
