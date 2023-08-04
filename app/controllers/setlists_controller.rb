@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class SiteController < ApplicationController
+class SetlistsController < ApplicationController
   def index; end
 end
