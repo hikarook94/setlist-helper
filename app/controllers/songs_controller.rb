@@ -47,6 +47,12 @@ class SongsController < ApplicationController
     end
   end
 
+  def destroy
+    song = Song.find(params[:id])
+    flash[:alert] = '削除に失敗しました。' unless song.destroy
+    redirect_to songs_path(query_params(URI(request.referer)))
+  end
+
   private
 
   def song_params
@@ -56,5 +62,12 @@ class SongsController < ApplicationController
   def to_ms(minutes, seconds)
     total_seconds = seconds.to_i + minutes.to_i * 60
     total_seconds * 1000
+  end
+
+  def query_params(url)
+    return {} if url.query.nil?
+
+    query_hash = CGI.parse(url.query)
+    query_hash.transform_values(&:first)
   end
 end
