@@ -11,6 +11,6 @@ class Setlist < ApplicationRecord
   delegate :count, to: :songs, prefix: true
 
   def total_duration_time
-    songs.inject(0) { |sum, song| sum + song.duration_time }
+    songs.sum(:duration_time)
   end
 end
