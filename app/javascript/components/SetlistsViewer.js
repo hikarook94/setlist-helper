@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 
-const SetlistsViewer = ({ setlists }) => {
+const SetlistsViewer = () => {
   const convertToHours = (milliSeconds) => {
     const minutes = Math.ceil(milliSeconds / 1000) / 60
     const hours = Math.trunc(minutes / 60)
@@ -9,28 +9,43 @@ const SetlistsViewer = ({ setlists }) => {
     return `${hours} 時間 ${remainingMinutes} 分`
   }
 
-  const renderSetlists = (setlistArray) => {
+    const [setlists, setSetlists] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isError, setIsError] = useState(false);
 
-    return setlistArray.map((setlist) => (
-      <li key={setlist.id}>
-        <Link to={`/setlists/${setlist.id}`}>
-          <div>{setlist.title}</div>
-          {setlist.songs.length}{' 曲 '}
-          {convertToHours(setlist.songs.reduce((accum, current) => accum + current.duration_time, 0))}
-          {' / '}
-          {convertToHours(setlist.target_duration_time)}
-        </Link>
-      </li>
-    ));
-  };
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await window.fetch('/api/setlists');
+          if (!response.ok) throw Error(response.statusText);
+          const data = await response.json();
+          setSetlists(data);
+        } catch (error) {
+          setIsError(true);
+          console.error(error);
+        }
 
-  return (
-    <section>
-      <ul>{renderSetlists(setlists)}</ul>
-    </section>
-  );
-};
+        setIsLoading(false);
+      };
 
+      fetchData();
+    }, []);
+
+    return (
+      <ul>
+        {setlists.map((setlist) => (
+          <li key={setlist.id}>
+            <Link to={`/setlists/${setlist.id}`}>
+              <div>{setlist.title}</div>
+              {setlist.songs.length}{' 曲 '}
+              {convertToHours(setlist.songs.reduce((accum, current) => accum + current.duration_time, 0))}
+              {' / '}
+              {convertToHours(setlist.target_duration_time)}
+            </Link>
+          </li>
+          ))}
+        </ul>
+    )
 };
 
 export default SetlistsViewer;
