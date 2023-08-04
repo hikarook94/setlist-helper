@@ -8,11 +8,9 @@ class Setlist < ApplicationRecord
   validates :target_duration_time, presence: true
   validates :target_duration_time, numericality: { only_integer: true }
 
-  def songs_count
-    self.songs.count
-  end
+  delegate :count, to: :songs, prefix: true
 
   def total_duration_time
-    self.songs.inject(0) {|sum, song| sum + song.duration_time}
+    songs.inject(0) { |sum, song| sum + song.duration_time }
   end
 end
