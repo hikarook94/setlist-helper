@@ -37,10 +37,10 @@ const SetlistsViewer = () => {
           <li key={setlist.id}>
             <Link to={`/setlists/${setlist.id}`}>
               <div>{setlist.title}</div>
-              {setlist.songs_count}{' 曲 '}
-              {convertToHours(setlist.total_duration_time)}
-              {' / '}
-              {convertToHours(setlist.target_duration_time)}
+              <span className="mr-2">{setlist.songs_count}曲</span>
+              <span>{convertToHours(setlist.total_duration_time)}</span>
+              <span className="mx-1">/</span>
+              <span>{convertToHours(setlist.target_duration_time)}</span>
             </Link>
           </li>
           ))}
