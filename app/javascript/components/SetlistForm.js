@@ -2,7 +2,10 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import {setLocale} from "yup"
+import * as ja from "yup-locale-ja";
 
+setLocale(ja.suggestive);
 
 const schema = yup
   .object({
