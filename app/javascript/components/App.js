@@ -4,14 +4,13 @@ import Setlist from './Setlist';
 import Setlists from './Setlists';
 import SetlistCreate from './SetlistCreate';
 import SetlistForm from './SetlistForm';
+import SetlistSongSelect from './SetlistSongSelect';
 
 const App = () => (
   <Routes>
     <Route path="/setlists" element={<Setlists />} />
     <Route path="/setlists/:id" element={<Setlist />} />
-    <Route path="/setlists/new" element={<SetlistCreate />}>
-      <Route path="form" element={<SetlistForm />} />
-    </Route>
+    <Route path="/setlists/new" element={<SetlistCreate />} />
   </Routes>
 )
 
