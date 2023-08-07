@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 
-const setlists = () => {
+const Setlists = () => {
   const convertToHours = (milliSeconds) => {
     const minutes = Math.ceil(milliSeconds / 1000) / 60
     const hours = Math.trunc(minutes / 60)
@@ -52,4 +52,4 @@ const setlists = () => {
     )
 };
 
-export default setlists;
+export default Setlists;
