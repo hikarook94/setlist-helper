@@ -10,8 +10,8 @@ setLocale(ja.suggestive);
 const schema = yup
   .object({
     setlistTitle: yup.string().required(),
-    setlistHours: yup.number().required().positive().integer(),
-    setlistMinutes: yup.number().required().positive().integer()
+    setlistHours: yup.number().min(0).required().integer(),
+    setlistMinutes: yup.number().min(0).required().integer()
   })
   .required()
 
