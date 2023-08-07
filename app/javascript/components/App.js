@@ -3,8 +3,6 @@ import { Routes, Route } from 'react-router-dom'
 import Setlist from './Setlist';
 import Setlists from './Setlists';
 import SetlistCreate from './SetlistCreate';
-import SetlistForm from './SetlistForm';
-import SetlistSongSelect from './SetlistSongSelect';
 
 const App = () => (
   <Routes>
