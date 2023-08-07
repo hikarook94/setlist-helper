@@ -49,6 +49,7 @@ const SetlistForm = ({onNext}) => {
         <p className="mb-1">何時間分のセットリストを作成しますか？</p>
         <input
           id="setlistHours"
+          type="number"
           {...register('setlistHours')}
           className="mr-2 w-12 border-0 ring-1 ring-inset rounded-md ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
         />
@@ -56,6 +57,7 @@ const SetlistForm = ({onNext}) => {
 
         <input
           id="setlistMinutes"
+          type="number"
           {...register('setlistMinutes')}
           className="mr-2 w-12 border-0 ring-1 ring-inset rounded-md ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
         />
