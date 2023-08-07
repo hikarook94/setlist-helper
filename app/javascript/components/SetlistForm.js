@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 
-const SetlistForm = () => {
+const SetlistForm = ({onNext}) => {
   return (
     <>
       <div className="mb-8">
@@ -29,7 +28,7 @@ const SetlistForm = () => {
         <label htmlFor="setlistMinutes">分</label>
       </div>
       <div className="text-center">
-        <Link to="/setlists/new"><button className="align-center mx-0 rounded-full bg-blue-500 w-48">次へ</button></Link>
+        <button onClick={onNext} className="align-center mx-0 rounded-full bg-blue-500 w-48">次へ</button>
       </div>
     </>
   )
