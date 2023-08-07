@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  root to: 'songs#index'
+  root to: redirect('/setlists')
   resources :songs
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get 'setlists', to: 'setlists#index'
+  get 'setlists/new', to: 'setlists#index'
+  get 'setlists/:id', to: 'setlists#index'
+  get 'setlists/:id/edit', to: 'setlists#index'
+
+  namespace :api do
+    resources :setlists
+  end
 end

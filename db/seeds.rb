@@ -20,15 +20,15 @@ Setlist.create!(
   [
     {
       title: 'セトリ 1',
-      target_duration_time: 1_800_000
+      target_duration_time: 1_800_000 # 30分
     },
     {
       title: 'セトリ 2',
-      target_duration_time: 3_600_000
+      target_duration_time: 3_600_000 # 1時間
     },
     {
       title: 'セトリ 3',
-      target_duration_time: 7_200_000
+      target_duration_time: 7_200_000 # 2時間
     }
   ]
 )

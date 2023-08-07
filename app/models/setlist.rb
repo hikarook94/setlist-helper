@@ -7,4 +7,10 @@ class Setlist < ApplicationRecord
   validates :title, presence: true
   validates :target_duration_time, presence: true
   validates :target_duration_time, numericality: { only_integer: true }
+
+  delegate :count, to: :songs, prefix: true
+
+  def total_duration_time
+    songs.sum(:duration_time)
+  end
 end

@@ -1,3 +1,11 @@
 import React from 'react';
-const HelloMessage = ({ name }) => <h1 className="text-3xl font-bold">Hello, {name}</h1>;
-export default HelloMessage;
+import { Routes, Route } from 'react-router-dom'
+import Setlists from './Setlists';
+
+const App = () => (
+  <Routes>
+    <Route path="setlists/*" element={<Setlists />} />
+  </Routes>
+)
+
+export default App;
