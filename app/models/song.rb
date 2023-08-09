@@ -12,4 +12,23 @@ class Song < ApplicationRecord
   validates :transposition, numericality: { in: -7..7 }
 
   mount_uploader :cover_img, CoverUploader
+
+  def self.random(exclude_song_ids, limit=3_600_000)
+    random = {
+      total_duration_time: 0,
+      songs: []
+    }
+    songs = Song.where.not(id: exclude_song_ids).order('RAND()')
+    songs.each do |song|
+      temp_duration_time = random[:total_duration_time] + song.duration_time
+      if temp_duration_time > limit
+        next
+      elsif temp_duration_time <= limit
+        random[:songs] << song.attributes.slice('id', 'name', 'artist', 'duration_time')
+        random[:total_duration_time] = temp_duration_time
+      end
+    end
+
+    random
+  end
 end
