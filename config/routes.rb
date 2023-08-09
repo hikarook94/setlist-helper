@@ -9,5 +9,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :setlists
+    resources :songs do
+      collection do
+        post 'random', to: 'songs#random'
+      end
+    end
   end
 end
