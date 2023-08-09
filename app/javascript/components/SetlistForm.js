@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom'
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import {setLocale} from "yup"
 import * as ja from "yup-locale-ja";
+import {InputValueContext} from './InputValueContext';
 
 setLocale(ja.suggestive);
 
@@ -19,6 +20,7 @@ const schema = yup
 
 const SetlistForm = () => {
   const navigate = useNavigate();
+  const { inputValues, setInputValues } = useContext(InputValueContext)
   const {
     register,
     handleSubmit,
@@ -27,7 +29,8 @@ const SetlistForm = () => {
     resolver: yupResolver(schema)
   })
   const onSubmit = (data) => {
-    navigate('./songs', {state:{data}})
+    setInputValues(data);
+    navigate('./songs')
   }
 
   return (
