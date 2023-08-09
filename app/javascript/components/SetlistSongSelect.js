@@ -26,18 +26,15 @@ const SetlistSongSelect = () => {
   return (
     <>
       <div className="p-4">
-        <h1 className="text-2xl text-center mb-8">セットリスト新規作成</h1>
-        <p>曲選択画面</p>
-        <p>
+        <h1 className="text-2xl text-center mb-4">セットリスト新規作成</h1>
+        <p className="text-2xl text-center mb-4">
           {inputValues.setlistTitle}
         </p>
-        <p>
-          {inputValues.setlistHours} 時間
-        </p>
-        <p>
-          {inputValues.setlistMinutes} 分
+        <p className="text-center">
+          {inputValues.setlistHours} 時間 {inputValues.setlistMinutes} 分
         </p>
       </div>
+      <div></div>
       <div className="text-center">
         <button onClick={fetchRandomSongs} className="align-center mx-0 rounded-full bg-blue-500 w-48">
           曲をランダムに選ぶ
