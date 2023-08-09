@@ -4,7 +4,24 @@ import { useLocation } from 'react-router-dom'
 const SetlistSongSelect = () => {
   const location = useLocation();
   const inputValues = location.state.data
-  console.log(location)
+  const fetchRandomSongs = async () => {
+    try {
+      const response = await window.fetch('/api/songs/random', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(inputValues)
+      });
+      if (!response.ok) throw Error(response.statusText);
+      console.log(response)
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+
+  }
 
   return (
     <>
@@ -20,6 +37,11 @@ const SetlistSongSelect = () => {
         <p>
           {inputValues.setlistMinutes} 分
         </p>
+      </div>
+      <div className="text-center">
+        <button onClick={fetchRandomSongs} className="align-center mx-0 rounded-full bg-blue-500 w-48">
+          曲をランダムに選ぶ
+        </button>
       </div>
     </>
   );
