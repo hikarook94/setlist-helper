@@ -29,7 +29,12 @@ const SetlistForm = () => {
     resolver: yupResolver(schema)
   })
   const onSubmit = (data) => {
-    setInputValues(data);
+    setInputValues(prevState => ({
+      ...prevState,
+      ...data
+    }));
+    console.log(inputValues, 'fom 36');
+    console.log(data, 'fom 37');
     navigate('./songs')
   }
 
