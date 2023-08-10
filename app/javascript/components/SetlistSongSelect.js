@@ -14,7 +14,14 @@ const SetlistSongSelect = () => {
       });
       if (!response.ok) throw Error(response.statusText);
       const data = await response.json();
-      console.log(data);
+      setSelectedSongs(data);
+      const fetched_song_ids = data.songs.map(song => song.id)
+      console.log(fetched_song_ids, 'data');
+      setInputValues((prevState, fetched_song_ids) => ({
+        ...prevState,
+        song_ids: fetched_song_ids
+      }))
+      console.log(inputValues);
     } catch (error) {
       console.error(error);
     }
