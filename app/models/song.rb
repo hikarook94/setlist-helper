@@ -29,6 +29,20 @@ class Song < ApplicationRecord
       end
     end
 
+    time = Song.milliseconds_to_time(random[:total_duration_time])
+    random[:total_hours], random[:total_minutes] = time
+
     random
+  end
+
+  private
+
+  def self.milliseconds_to_time(milliseconds)
+    total_seconds = milliseconds / 1000
+    hours = (total_seconds / 3600).to_i
+    total_seconds %= 3600
+    minutes = (total_seconds / 60).to_i
+
+    return hours, minutes
   end
 end
