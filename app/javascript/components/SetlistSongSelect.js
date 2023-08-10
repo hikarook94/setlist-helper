@@ -7,9 +7,12 @@ const SetlistSongSelect = () => {
   const [ inputValues, setInputValues ] = useInputValue();
   console.log(inputValues, 'select');
   const [ selectedSongs, setSelectedSongs ] = useState({
+    total_hours: 0,
+    total_minutes: 0,
     songs: []
   });
   const updateInputValue = useUpdateInputValue();
+
   const fetchRandomSongs = async () => {
     try {
       const response = await window.fetch('/api/songs/random', {
@@ -38,7 +41,13 @@ const SetlistSongSelect = () => {
           {inputValues.setlistTitle}
         </p>
         <p className="text-center">
-          {inputValues.setlistHours} 時間 {inputValues.setlistMinutes} 分
+          <span>
+            {selectedSongs.total_hours} 時間 {selectedSongs.total_minutes} 分
+          </span>
+          <span>/</span>
+          <span>
+            {inputValues.setlistHours} 時間 {inputValues.setlistMinutes} 分
+          </span>
         </p>
         <div className="h-96">
           <div className="overflow-scroll h-full">
