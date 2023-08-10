@@ -1,12 +1,8 @@
 import React, { useContext } from 'react';
-import { useLocation } from 'react-router-dom'
-import {InputValueContext} from './InputValueContext';
+import {useInputValue} from './InputValueContext';
 
 const SetlistSongSelect = () => {
-  const location = useLocation();
-  // const inputValues = location.state.data
-  const { inputValues, setInputValues } = useContext(InputValueContext)
-  // console.log(inputValues, 'selistsongselect');
+  const [ inputValues, setInputValues ] = useInputValue();
   const fetchRandomSongs = async () => {
     try {
       const response = await window.fetch('/api/songs/random', {
@@ -17,7 +13,6 @@ const SetlistSongSelect = () => {
         body: JSON.stringify(inputValues)
       });
       if (!response.ok) throw Error(response.statusText);
-      console.log(response)
       const data = await response.json();
       console.log(data);
     } catch (error) {

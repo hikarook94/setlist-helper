@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import {setLocale} from "yup"
 import * as ja from "yup-locale-ja";
-import {InputValueContext} from './InputValueContext';
+import {useInputValue} from './InputValueContext';
 
 setLocale(ja.suggestive);
 
@@ -20,7 +20,7 @@ const schema = yup
 
 const SetlistForm = () => {
   const navigate = useNavigate();
-  const { inputValues, setInputValues } = useContext(InputValueContext)
+  const [inputValues, setInputValues] = useInputValue();
   const {
     register,
     handleSubmit,
