@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useInputValue} from './InputValueContext';
+import {useInputValue, useUpdateInputValue} from './InputValueContext';
 import ListedSong from './ListedSong';
 
 
@@ -9,6 +9,7 @@ const SetlistSongSelect = () => {
   const [ selectedSongs, setSelectedSongs ] = useState({
     songs: []
   });
+  const updateInputValue = useUpdateInputValue();
   const fetchRandomSongs = async () => {
     try {
       const response = await window.fetch('/api/songs/random', {
@@ -22,12 +23,7 @@ const SetlistSongSelect = () => {
       const data = await response.json();
       setSelectedSongs(data);
       const fetched_song_ids = data.songs.map(song => song.id)
-      console.log(fetched_song_ids, 'data');
-      setInputValues((prevState, fetched_song_ids) => ({
-        ...prevState,
-        song_ids: fetched_song_ids
-      }))
-      console.log(inputValues);
+      updateInputValue('song_ids', fetched_song_ids)
     } catch (error) {
       console.error(error);
     }
