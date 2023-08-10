@@ -1,8 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import {useInputValue} from './InputValueContext';
+import ListedSong from './ListedSong';
+
 
 const SetlistSongSelect = () => {
   const [ inputValues, setInputValues ] = useInputValue();
+  console.log(inputValues, 'select');
+  const [ selectedSongs, setSelectedSongs ] = useState({
+    songs: []
+  });
   const fetchRandomSongs = async () => {
     try {
       const response = await window.fetch('/api/songs/random', {
@@ -38,12 +44,25 @@ const SetlistSongSelect = () => {
         <p className="text-center">
           {inputValues.setlistHours} 時間 {inputValues.setlistMinutes} 分
         </p>
-      </div>
-      <div></div>
-      <div className="text-center">
-        <button onClick={fetchRandomSongs} className="align-center mx-0 rounded-full bg-blue-500 w-48">
-          曲をランダムに選ぶ
-        </button>
+        <div className="h-96">
+          <div className="overflow-scroll h-full">
+            <ul>
+              {
+                selectedSongs.songs.map((song, index) => (
+                  <ListedSong key={index} value={song} />
+                ))
+              }
+            </ul>
+          </div>
+          <div className="text-center">
+            <button onClick={fetchRandomSongs} className="align-center mx-0 rounded-full bg-blue-500 w-48">
+              曲をランダムに選ぶ
+            </button>
+            {/* <button onClick={} className="align-center mx-0 rounded-full bg-blue-500 w-48">
+              保存する
+            </button> */}
+          </div>
+        </div>
       </div>
     </>
   );
