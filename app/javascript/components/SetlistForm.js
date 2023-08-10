@@ -17,7 +17,6 @@ const schema = yup
   })
   .required()
 
-
 const SetlistForm = () => {
   const navigate = useNavigate();
   const [inputValues, setInputValues] = useInputValue();
@@ -33,8 +32,6 @@ const SetlistForm = () => {
       ...prevState,
       ...data
     }));
-    console.log(inputValues, 'fom 36');
-    console.log(data, 'fom 37');
     navigate('./songs')
   }
 
@@ -54,7 +51,7 @@ const SetlistForm = () => {
           </div>
           <div className="text-red-700" >
             {errors.setlistTitle?.message}
-        </div>
+          </div>
         </div>
         <div className="mb-8">
           <p className="mb-1">何時間分のセットリストを作成しますか？</p>
