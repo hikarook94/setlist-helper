@@ -3,7 +3,9 @@ import React, { createContext, useState } from 'react';
 const InputValueContext = createContext();
 
 export const InputValueProvider = ({ children }) => {
-  const [inputValues, setInputValues] = useState();
+  const [inputValues, setInputValues] = useState({
+    song_ids: []
+  });
   const value = [inputValues, setInputValues];
 
   return (
