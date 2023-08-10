@@ -13,4 +13,8 @@ class Setlist < ApplicationRecord
   def total_duration_time
     songs.sum(:duration_time)
   end
+
+  def self.to_milliseconds(hours, minutes=0)
+    (hours.to_i * 60 + minutes.to_i) * 60 * 1000
+  end
 end
