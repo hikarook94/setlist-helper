@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import {useInputValue, useUpdateInputValue} from './InputValueContext';
 import ListedSong from './ListedSong';
 import { handleAjaxError } from '../helpers/helpers'
+import { useNavigate } from 'react-router-dom'
 
 
 const SetlistSongSelect = () => {
   const [ inputValues, setInputValues ] = useInputValue();
   const updateInputValue = useUpdateInputValue();
+  const navigate = useNavigate();
   const [ selectedSongs, setSelectedSongs ] = useState({
     total_hours: 0,
     total_minutes: 0,
@@ -43,7 +45,8 @@ const SetlistSongSelect = () => {
         body: JSON.stringify(inputValues)
       });
       if (!response.ok) throw Error(response.statusText);
-      const data = await response.json();
+      const savedSetlist = await response.json();
+      navigate(`/setlists/${savedSetlist.id}`)
     } catch (error) {
       handleAjaxError(error)
     }
