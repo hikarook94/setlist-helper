@@ -14,7 +14,9 @@ class Api::SetlistsController < ApplicationController
       songs.each_with_index do |song, i|
         @setlist.song_setlists.create(song:, position: i)
       end
+      render json: @setlist
+    else
+      render json: @setlist.errors, status: :unprocessable_entity
     end
-    render json: @setlist
   end
 end
