@@ -4,7 +4,8 @@ const InputValueContext = createContext();
 
 export const InputValueProvider = ({ children }) => {
   const [inputValues, setInputValues] = useState({
-    song_ids: []
+    song_ids: [],
+    total_duration_time: 0
   });
   const value = [inputValues, setInputValues];
 
