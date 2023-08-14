@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {useInputValue, useUpdateInputValue} from './InputValueContext';
 import ListedSong from './ListedSong';
+import { handleAjaxError } from '../helpers/helpers'
 
 
 const SetlistSongSelect = () => {
@@ -28,7 +29,7 @@ const SetlistSongSelect = () => {
       updateInputValue('song_ids', fetched_song_ids)
       updateInputValue('total_duration_time', data.total_duration_time)
     } catch (error) {
-      console.error(error);
+      handleAjaxError(error)
     }
   }
 
@@ -44,7 +45,7 @@ const SetlistSongSelect = () => {
       if (!response.ok) throw Error(response.statusText);
       const data = await response.json();
     } catch (error) {
-      console.error(error);
+      handleAjaxError(error)
     }
   }
 
