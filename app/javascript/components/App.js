@@ -9,11 +9,13 @@ const App = () => {
   const [inputValues, setInputValues] = useState();
 
   return (
-    <Routes>
-      <Route path="/setlists" element={<Setlists />} />
-      <Route path="/setlists/:id" element={<Setlist />} />
-      <Route path="/setlists/new/*" element={<SetlistCreate />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/setlists" element={<Setlists />} />
+        <Route path="/setlists/:id" element={<Setlist />} />
+        <Route path="/setlists/new/*" element={<SetlistCreate />} />
+      </Routes>
+    </>
   )
 }
 
