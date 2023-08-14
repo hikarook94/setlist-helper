@@ -13,29 +13,25 @@ class Song < ApplicationRecord
 
   mount_uploader :cover_img, CoverUploader
 
-  def self.random(exclude_song_ids, limit=3_600_000)
-    random = {
-      total_duration_time: 0,
-      songs: []
-    }
+  # 3_600_000 ms == 1 hour
+  def self.random(exclude_song_ids, total_duration_time = 0, limit = 3_600_000)
+    selected_songs = Song.select(:id, :name, :artist, :duration_time).where(id: exclude_song_ids)
+    selected_songs = selected_songs.to_a
     songs = Song.where.not(id: exclude_song_ids).order('RAND()')
     songs.each do |song|
-      temp_duration_time = random[:total_duration_time] + song.duration_time
+      temp_duration_time = total_duration_time + song.duration_time
       if temp_duration_time > limit
         next
       elsif temp_duration_time <= limit
-        random[:songs] << song.attributes.slice('id', 'name', 'artist', 'duration_time')
-        random[:total_duration_time] = temp_duration_time
+        selected_songs << song.attributes.slice('id', 'name', 'artist', 'duration_time')
+        total_duration_time = temp_duration_time
       end
     end
 
-    time = Song.milliseconds_to_time(random[:total_duration_time])
-    random[:total_hours], random[:total_minutes] = time
+    total_hours, total_minutes = Song.milliseconds_to_time(total_duration_time)
 
-    random
+    { songs: selected_songs, total_hours:, total_minutes:, total_duration_time: }
   end
-
-  private
 
   def self.milliseconds_to_time(milliseconds)
     total_seconds = milliseconds / 1000
@@ -43,6 +39,6 @@ class Song < ApplicationRecord
     total_seconds %= 3600
     minutes = (total_seconds / 60).to_i
 
-    return hours, minutes
+    [hours, minutes]
   end
 end
