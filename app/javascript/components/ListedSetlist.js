@@ -1,14 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import { convertToHours } from '../helpers/helpers'
 
 function ListedSetlist(props) {
-  const convertToHours = (milliSeconds) => {
-    const minutes = Math.ceil(milliSeconds / 1000) / 60
-    const hours = Math.trunc(minutes / 60)
-    const remainingMinutes = Math.ceil(minutes % 60)
-    return `${hours} 時間 ${remainingMinutes} 分`
-  }
-
   return (
     <>
       <div className="mb-1 px-4 py-2 border">

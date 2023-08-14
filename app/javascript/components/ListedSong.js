@@ -1,12 +1,7 @@
 import React from 'react';
+import { convertToMinutes } from '../helpers/helpers'
 
 function ListedSong(props) {
-    const convertToMinutes = (milliSeconds) => {
-      const minutes = Math.floor(milliSeconds / 60000)
-      const seconds = ((milliSeconds % 60000) / 1000).toFixed(0)
-      return `${minutes} 分 ${seconds} 秒`
-    }
-
   return (
     <>
       <div className="mb-1 px-4 py-2 border">
