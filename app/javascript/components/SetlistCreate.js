@@ -14,8 +14,8 @@ const SetlistCreate = () => {
   return (
     <>
       <div className="h-screen">
-        <h1 className="text-2xl text-center mb-4 pt-4">セットリスト新規作成</h1>
         <ToastContainer />
+        <h1 className="text-2xl text-center mb-2 pt-6">セットリスト新規作成</h1>
         <div className="p-4">
           <InputValueProvider>
             <Routes>
