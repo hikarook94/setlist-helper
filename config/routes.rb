@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'setlists', to: 'setlists#index'
   get 'setlists/new', to: 'setlists#index'
+  get 'setlists/new/songs', to: 'setlists#index'
   get 'setlists/:id', to: 'setlists#index'
   get 'setlists/:id/edit', to: 'setlists#index'
 
