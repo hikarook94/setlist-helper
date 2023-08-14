@@ -30,43 +30,59 @@ const SetlistSongSelect = () => {
     } catch (error) {
       console.error(error);
     }
+  }
 
+  const saveSetlist = async () => {
+    try {
+      const response = await window.fetch('/api/setlists', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(inputValues)
+      });
+      if (!response.ok) throw Error(response.statusText);
+      const data = await response.json();
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
     <>
-      <div className="p-4">
-        <h1 className="text-2xl text-center mb-4">セットリスト新規作成</h1>
-        <p className="text-2xl text-center mb-4">
-          {inputValues.setlistTitle}
-        </p>
-        <p className="text-center">
-          <span>
-            {selectedSongs.total_hours} 時間 {selectedSongs.total_minutes} 分
-          </span>
-          <span>/</span>
-          <span>
-            {inputValues.setlistHours} 時間 {inputValues.setlistMinutes} 分
-          </span>
-        </p>
-        <div className="h-96">
-          <div className="overflow-scroll h-full">
-            <ul>
-              {
-                selectedSongs.songs.map((song, index) => (
-                  <ListedSong key={index} value={song} />
-                ))
-              }
-            </ul>
-          </div>
-          <div className="text-center">
-            <button onClick={fetchRandomSongs} className="align-center mx-0 rounded-full bg-blue-500 w-48">
-              曲をランダムに選ぶ
-            </button>
-            {/* <button onClick={} className="align-center mx-0 rounded-full bg-blue-500 w-48">
-              保存する
-            </button> */}
-          </div>
+      <p className="text-2xl text-center mb-4">
+        {inputValues.setlistTitle}
+      </p>
+      <div className="text-center mb-4">
+        <span>
+          {selectedSongs.total_hours} 時間 {selectedSongs.total_minutes} 分
+        </span>
+        <span>/</span>
+        <span>
+          {inputValues.setlistHours} 時間 {inputValues.setlistMinutes} 分
+        </span>
+      </div>
+      <div className="relative h-96 overflow-y-auto mx-4 mb-8">
+        <div className="h-full">
+          <ul>
+            {
+              selectedSongs.songs.map((song, index) => (
+                <ListedSong key={index} value={song} />
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+      <div className="text-center">
+        <div className="mb-8">
+          <button onClick={fetchRandomSongs} className="align-center mx-0 rounded-full bg-blue-500 w-64 h-12">
+            曲をランダムに選ぶ
+          </button>
+        </div>
+        <div>
+          <button onClick={saveSetlist} className="align-center mx-0 rounded-full bg-blue-500 w-64 h-12">
+            このセットリストを保存する
+          </button>
         </div>
       </div>
     </>
