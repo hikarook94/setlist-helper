@@ -8,12 +8,17 @@ const SetlistCreate = () => {
 
   return (
     <>
-      <InputValueProvider>
-        <Routes>
-          <Route path="/" element={<SetlistForm />} />
-          <Route path="songs" element={<SetlistSongSelect />} />
-        </Routes>
-      </InputValueProvider>
+      <div className="h-screen">
+        <h1 className="text-2xl text-center mb-4 pt-4">セットリスト新規作成</h1>
+        <div className="p-4">
+          <InputValueProvider>
+            <Routes>
+              <Route path="/" element={<SetlistForm />} />
+              <Route path="songs" element={<SetlistSongSelect />} />
+            </Routes>
+          </InputValueProvider>
+        </div>
+      </div>
     </>
   )
 }
