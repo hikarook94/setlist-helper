@@ -1,24 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import {useInputValue, useUpdateInputValue} from './InputValueContext';
-import ListedSong from './ListedSong';
+import RepertoireSong from './RepertoireSong';
 
 const Repertoire = () => {
   const [songs, setSongs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
 
   const [ inputValues, setInputValues ] = useInputValue();
   const updateInputValue = useUpdateInputValue();
-  console.log(inputValues);
+  const [ selectedSongs, setSelectedSongs ] = useState([]);
+
+  const handleSongSelect = (song) => {
+    setSelectedSongs(prevState => [...prevState, song])
+  }
 
   useEffect(() => {
     const fetchSongs = async () => {
       try {
         const response = await window.fetch('/api/songs');
         if (!response.ok) throw Error(response.statusText);
-        const songs = await response.json();
-        setSongs(songs)
+        const fetchedSongs = await response.json();
+        setSongs(fetchedSongs)
       } catch (error) {
         setIsError(true);
         console.error(error);
@@ -31,7 +36,8 @@ const Repertoire = () => {
   }, []);
 
   const addSongs = () => {
-
+    updateInputValue({songs: [...inputValues.songs, ...selectedSongs]})
+    navigate('/setlists/new/songs')
   }
 
   return (
@@ -41,7 +47,7 @@ const Repertoire = () => {
       </p>
       <div className="text-center mb-4">
         <span>
-          {selectedSongs.total_hours} 時間 {selectedSongs.total_minutes} 分
+          {inputValues.total_hours} 時間 {inputValues.total_minutes} 分
         </span>
         <span>/</span>
         <span>
@@ -56,7 +62,7 @@ const Repertoire = () => {
           <ul>
             {
               songs.map((song, index) => (
-                <ListedSong key={index} value={song} />
+                <RepertoireSong key={index} value={song} onSongSelected={handleSongSelect} />
               ))
             }
           </ul>
