@@ -3,6 +3,7 @@ import {useInputValue, useUpdateInputValue} from './InputValueContext';
 import ListedSong from './ListedSong';
 import { handleAjaxError } from '../helpers/helpers'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 const SetlistSongSelect = () => {
@@ -69,6 +70,13 @@ const SetlistSongSelect = () => {
       <div className="relative h-96 overflow-y-auto mx-4 mb-8">
         <div className="h-full">
           <ul>
+            <div className="mb-1 px-4 py-2 border">
+              <li>
+                <Link to="/setlists/new/songs/repertoire">
+                  <div>曲を追加する</div>
+                </Link>
+              </li>
+            </div>
             {
               selectedSongs.songs.map((song, index) => (
                 <ListedSong key={index} value={song} />
