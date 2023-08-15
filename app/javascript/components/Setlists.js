@@ -10,7 +10,7 @@ const Setlists = () => {
     const [isError, setIsError] = useState(false);
 
     useEffect(() => {
-      const fetchData = async () => {
+      const fetchSetlists = async () => {
         try {
           const response = await window.fetch('/api/setlists');
           if (!response.ok) throw Error(response.statusText);
@@ -24,7 +24,7 @@ const Setlists = () => {
         setIsLoading(false);
       };
 
-      fetchData();
+      fetchSetlists();
     }, []);
 
     return (
