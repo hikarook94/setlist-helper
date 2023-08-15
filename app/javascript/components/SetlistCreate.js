@@ -2,6 +2,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import SetlistForm from './SetlistForm';
 import SetlistSongSelect from './SetlistSongSelect';
+import Repertoire from './Repertoire';
 import {InputValueProvider} from './InputValueContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -21,6 +22,7 @@ const SetlistCreate = () => {
             <Routes>
               <Route path="/" element={<SetlistForm />} />
               <Route path="songs" element={<SetlistSongSelect />} />
+              <Route path="songs/repertoire" element={<Repertoire />} />
             </Routes>
           </InputValueProvider>
         </div>
