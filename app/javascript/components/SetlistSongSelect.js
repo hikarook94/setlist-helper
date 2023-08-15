@@ -10,11 +10,6 @@ const SetlistSongSelect = () => {
   const [ inputValues, setInputValues ] = useInputValue();
   const updateInputValue = useUpdateInputValue();
   const navigate = useNavigate();
-  const [ selectedSongs, setSelectedSongs ] = useState({
-    total_hours: 0,
-    total_minutes: 0,
-    songs: []
-  });
 
   const fetchRandomSongs = async () => {
     try {
@@ -28,9 +23,8 @@ const SetlistSongSelect = () => {
       if (!response.ok) throw Error(response.statusText);
       const data = await response.json();
       const fetched_song_ids = data.songs.map(song => song.id)
-      setSelectedSongs(data);
-      updateInputValue('song_ids', fetched_song_ids)
-      updateInputValue('total_duration_time', data.total_duration_time)
+      data.song_ids = fetched_song_ids
+      updateInputValue(data)
     } catch (error) {
       handleAjaxError(error)
     }
@@ -60,7 +54,7 @@ const SetlistSongSelect = () => {
       </p>
       <div className="text-center mb-4">
         <span>
-          {selectedSongs.total_hours} 時間 {selectedSongs.total_minutes} 分
+          {inputValues.total_hours} 時間 {inputValues.total_minutes} 分
         </span>
         <span>/</span>
         <span>
@@ -78,7 +72,7 @@ const SetlistSongSelect = () => {
               </li>
             </div>
             {
-              selectedSongs.songs.map((song, index) => (
+              inputValues.songs.map((song, index) => (
                 <ListedSong key={index} value={song} />
               ))
             }

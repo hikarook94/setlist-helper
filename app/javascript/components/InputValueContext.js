@@ -5,7 +5,10 @@ const InputValueContext = createContext();
 export const InputValueProvider = ({ children }) => {
   const [inputValues, setInputValues] = useState({
     song_ids: [],
-    total_duration_time: 0
+    songs: [],
+    total_duration_time: 0,
+    total_hours: 0,
+    total_minutes: 0,
   });
   const value = [inputValues, setInputValues];
 
@@ -29,10 +32,10 @@ export const useInputValue = () => {
 export const useUpdateInputValue = () => {
   const [ inputValues, setInputValues ] = React.useContext(InputValueContext);
 
-  const updateInputValue = (key, newValue) => {
+  const updateInputValue = (newData) => {
     setInputValues(prevState => ({
       ...prevState,
-      [key]: newValue
+      ...newData
     }))
   }
   return updateInputValue;
