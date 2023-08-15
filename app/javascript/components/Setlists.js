@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import ListedSetlist from './ListedSetlist';
 
 const Setlists = () => {
-
-
     const [setlists, setSetlists] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(false);
