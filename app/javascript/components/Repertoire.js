@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { useInputValue } from './InputValueContext';
 import RepertoireSong from './RepertoireSong';
+import { convertToHours, handleAjaxError } from '../helpers/helpers'
 
 const Repertoire = () => {
   const [songs, setSongs] = useState([]);
@@ -24,8 +25,7 @@ const Repertoire = () => {
         const fetchedSongs = await response.json();
         setSongs(fetchedSongs)
       } catch (error) {
-        setIsError(true);
-        console.error(error);
+        handleAjaxError(error)
       }
 
       setIsLoading(false);
