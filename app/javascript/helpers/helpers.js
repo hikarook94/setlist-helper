@@ -13,6 +13,10 @@ export const convertToMinutes = (milliSeconds) => {
   return `${minutes} 分 ${seconds} 秒`
 }
 
+export const convertToMilliSeconds = (hours, minutes) => {
+  return (hours * 60 + minutes) * 60 * 1000
+}
+
 export const handleAjaxError = (err) => {
   error('Something went wrong...')
   console.error(err);
