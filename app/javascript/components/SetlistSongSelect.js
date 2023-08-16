@@ -62,7 +62,7 @@ const SetlistSongSelect = () => {
   return (
     <>
       <p className="text-2xl text-center mb-4">
-        {inputValues.setlistTitle}
+        {inputValues.setlist_title}
       </p>
       <div className="text-center mb-4">
         <span>
