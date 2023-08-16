@@ -14,12 +14,17 @@ const SetlistSongSelect = () => {
 
   const fetchRandomSongs = async () => {
     try {
+      const song_ids = inputValues.songs.map(song => song.id)
       const response = await window.fetch('/api/songs/random', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(inputValues)
+        body: JSON.stringify({
+          song_ids: song_ids,
+          total_duration_time: inputValues.total_duration_time,
+          target_duration_time: inputValues.target_duration_time
+        })
       });
       if (!response.ok) throw Error(response.statusText);
       const data = await response.json();
@@ -33,12 +38,18 @@ const SetlistSongSelect = () => {
 
   const saveSetlist = async () => {
     try {
+      const song_ids = inputValues.songs.map(song => song.id)
       const response = await window.fetch('/api/setlists', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(inputValues)
+        body: JSON.stringify({
+          song_ids: song_ids,
+          title: inputValues.setlist_title,
+          total_duration_time: inputValues.total_duration_time,
+          target_duration_time: inputValues.target_duration_time
+        })
       });
       if (!response.ok) throw Error(response.statusText);
       const savedSetlist = await response.json();

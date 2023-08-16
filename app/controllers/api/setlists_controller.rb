@@ -7,8 +7,7 @@ class Api::SetlistsController < ApplicationController
   end
 
   def create
-    target_duration_time = Setlist.to_milliseconds(params[:setlistHours], params[:setlistMinutes])
-    @setlist = Setlist.new(title: params[:setlistTitle], target_duration_time:)
+    @setlist = Setlist.new(title: params[:title], target_duration_time: params[:target_duration_time])
     songs = Song.find(params[:song_ids])
     if @setlist.save
       songs.each_with_index do |song, i|
