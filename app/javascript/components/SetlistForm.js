@@ -6,6 +6,7 @@ import * as yup from "yup"
 import {setLocale} from "yup"
 import * as ja from "yup-locale-ja";
 import {useInputValue} from './InputValueContext';
+import { convertToMilliSeconds } from '../helpers/helpers'
 
 setLocale(ja.suggestive);
 
@@ -28,9 +29,11 @@ const SetlistForm = () => {
     resolver: yupResolver(schema)
   })
   const onSubmit = (data) => {
-    setInputValues(prevState => ({
+    const setlistTargetDurationTime = convertToMilliSeconds(data.setlistHours, data.setlistMinutes)
+    setInputValues((prevState) => ({
       ...prevState,
-      ...data
+      setlist_title: data.setlistTitle,
+      target_duration_time: setlistTargetDurationTime
     }));
     navigate('./songs')
   }

@@ -7,8 +7,6 @@ export const InputValueProvider = ({ children }) => {
     song_ids: [],
     songs: [],
     total_duration_time: 0,
-    total_hours: 0,
-    total_minutes: 0,
   });
   const value = [inputValues, setInputValues];
 

@@ -4,6 +4,7 @@ import ListedSong from './ListedSong';
 import { handleAjaxError } from '../helpers/helpers'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { convertToHours } from '../helpers/helpers'
 
 
 const SetlistSongSelect = () => {
@@ -54,11 +55,11 @@ const SetlistSongSelect = () => {
       </p>
       <div className="text-center mb-4">
         <span>
-          {inputValues.total_hours} 時間 {inputValues.total_minutes} 分
+        {convertToHours(inputValues.total_duration_time)}
         </span>
         <span>/</span>
         <span>
-          {inputValues.setlistHours} 時間 {inputValues.setlistMinutes} 分
+          {convertToHours(inputValues.target_duration_time)}
         </span>
       </div>
       <div className="relative h-96 overflow-y-auto mx-4 mb-8">
