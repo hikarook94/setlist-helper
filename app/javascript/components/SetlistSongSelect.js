@@ -28,9 +28,10 @@ const SetlistSongSelect = () => {
       });
       if (!response.ok) throw Error(response.statusText);
       const data = await response.json();
-      const fetched_song_ids = data.songs.map(song => song.id)
-      data.song_ids = fetched_song_ids
-      updateInputValue(data)
+      setInputValues((prevState) => ({
+        ...prevState,
+        ...data,
+      }));
     } catch (error) {
       handleAjaxError(error)
     }
