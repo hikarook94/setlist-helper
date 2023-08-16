@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useInputValue, useUpdateInputValue} from './InputValueContext';
+import { useInputValue } from './InputValueContext';
 import ListedSong from './ListedSong';
 import { handleAjaxError } from '../helpers/helpers'
 import { useNavigate } from 'react-router-dom'
@@ -9,7 +9,6 @@ import { convertToHours } from '../helpers/helpers'
 
 const SetlistSongSelect = () => {
   const [ inputValues, setInputValues ] = useInputValue();
-  const updateInputValue = useUpdateInputValue();
   const navigate = useNavigate();
 
   const fetchRandomSongs = async () => {

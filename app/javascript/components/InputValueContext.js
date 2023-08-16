@@ -25,15 +25,3 @@ export const useInputValue = () => {
   }
   return context;
 };
-
-export const useUpdateInputValue = () => {
-  const [ inputValues, setInputValues ] = React.useContext(InputValueContext);
-
-  const updateInputValue = (newData) => {
-    setInputValues(prevState => ({
-      ...prevState,
-      ...newData
-    }))
-  }
-  return updateInputValue;
-}

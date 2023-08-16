@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
-import {useInputValue, useUpdateInputValue} from './InputValueContext';
+import { useInputValue } from './InputValueContext';
 import RepertoireSong from './RepertoireSong';
 
 const Repertoire = () => {
@@ -10,7 +10,6 @@ const Repertoire = () => {
   const navigate = useNavigate();
 
   const [ inputValues, setInputValues ] = useInputValue();
-  const updateInputValue = useUpdateInputValue();
   const [ selectedSongs, setSelectedSongs ] = useState([]);
 
   const handleSongSelect = (song) => {
@@ -37,17 +36,18 @@ const Repertoire = () => {
 
   const addSongs = () => {
     const totalDurationTime = selectedSongs.reduce((total, song) => song.duration_time + total, 0)
-    updateInputValue({
+    setInputValues(prevState => ({
+      ...prevState,
       songs: [...inputValues.songs, ...selectedSongs],
       total_duration_time: totalDurationTime,
-    })
+    }))
     navigate('/setlists/new/songs')
   }
 
   return (
     <>
       <p className="text-2xl text-center mb-4">
-        {inputValues.setlistTitle}
+        {inputValues.setlist_title}
       </p>
       <div className="text-center mb-4">
         <span>
