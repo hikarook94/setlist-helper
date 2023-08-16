@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import {setLocale} from "yup"
 import * as ja from "yup-locale-ja";
-import {useInputValue} from './InputValueContext';
+import { useInputValue } from './InputValueContext';
 import { convertToMilliSeconds } from '../helpers/helpers'
 
 setLocale(ja.suggestive);
