@@ -70,8 +70,8 @@ const SetlistSongSelect = () => {
         <div className="h-full">
           <ul>
             {
-              selectedSongs.songs.map((song, index) => (
-                <ListedSong key={index} value={song} />
+              selectedSongs.songs.map((song) => (
+                <ListedSong key={song.id} value={song} />
               ))
             }
           </ul>
