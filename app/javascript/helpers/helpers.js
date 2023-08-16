@@ -14,6 +14,6 @@ export const convertToMinutes = (milliSeconds) => {
 }
 
 export const handleAjaxError = (err) => {
-  error('Something went wrong...')
+  error(err.message)
   console.error(err);
 }
