@@ -6,7 +6,6 @@ import SetlistCreate from './SetlistCreate';
 
 
 const App = () => {
-  const [inputValues, setInputValues] = useState();
 
   return (
     <>
