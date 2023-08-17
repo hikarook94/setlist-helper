@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { convertToMinutes } from "../helpers/helpers";
-import { useInputValue } from "./InputValueContext";
 
 function RepertoireSong(props) {
-  const [inputValues, setInputValues] = useInputValue();
   const [isSelected, setIsSelected] = useState(props.isSelected);
 
   const handleClick = () => {

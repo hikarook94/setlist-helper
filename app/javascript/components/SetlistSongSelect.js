@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useInputValue } from "./InputValueContext";
 import ListedSong from "./ListedSong";
 import { handleAjaxError, convertToHours } from "../helpers/helpers";
@@ -10,14 +10,14 @@ const SetlistSongSelect = () => {
 
   const fetchRandomSongs = async () => {
     try {
-      const song_ids = inputValues.songs.map((song) => song.id);
+      const songIds = inputValues.songs.map((song) => song.id);
       const response = await window.fetch("/api/songs/random", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          song_ids: song_ids,
+          song_ids: songIds,
           total_duration_time: inputValues.total_duration_time,
           target_duration_time: inputValues.target_duration_time,
         }),
@@ -35,14 +35,14 @@ const SetlistSongSelect = () => {
 
   const saveSetlist = async () => {
     try {
-      const song_ids = inputValues.songs.map((song) => song.id);
+      const songIds = inputValues.songs.map((song) => song.id);
       const response = await window.fetch("/api/setlists", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          song_ids: song_ids,
+          song_ids: songIds,
           title: inputValues.setlist_title,
           total_duration_time: inputValues.total_duration_time,
           target_duration_time: inputValues.target_duration_time,

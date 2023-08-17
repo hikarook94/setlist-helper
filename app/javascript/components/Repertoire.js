@@ -6,8 +6,6 @@ import { convertToHours, handleAjaxError } from "../helpers/helpers";
 
 const Repertoire = () => {
   const [songs, setSongs] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
   const [inputValues, setInputValues] = useInputValue();
@@ -33,8 +31,6 @@ const Repertoire = () => {
       } catch (error) {
         handleAjaxError(error);
       }
-
-      setIsLoading(false);
     };
 
     fetchSongs();
