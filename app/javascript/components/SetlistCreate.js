@@ -17,7 +17,7 @@ const SetlistCreate = () => {
       <div className="h-screen">
         <ToastContainer />
         <h1 className="text-2xl text-center mb-2 pt-6">セットリスト新規作成</h1>
-        <div className="p-4">
+        <div className="p-4 h-3/5">
           <InputValueProvider>
             <Routes>
               <Route path="/" element={<SetlistForm />} />

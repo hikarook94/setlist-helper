@@ -73,7 +73,7 @@ const SetlistSongSelect = () => {
           {convertToHours(inputValues.target_duration_time)}
         </span>
       </div>
-      <div className="relative h-96 overflow-y-auto mx-4 mb-8">
+      <div className="relative h-4/5 overflow-y-auto mx-4 mb-8">
         <div className="h-full">
           <ul>
             <div className="mb-1 px-4 py-2 border">
