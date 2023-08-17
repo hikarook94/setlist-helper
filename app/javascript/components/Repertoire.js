@@ -14,8 +14,14 @@ const Repertoire = () => {
   const [ selectedSongs, setSelectedSongs ] = useState([]);
 
   const handleSongSelect = (song) => {
-    setSelectedSongs(prevState => [...prevState, song])
+    if (selectedSongs.includes(song)) {
+      setSelectedSongs(prevState => prevState.filter(i => i !== song));
+    } else {
+      setSelectedSongs(prevState => [...prevState, song]);
+    }
   }
+
+  const songIds = inputValues.songs.map(song => song.id)
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -35,7 +41,8 @@ const Repertoire = () => {
   }, []);
 
   const addSongs = () => {
-    const totalDurationTime = selectedSongs.reduce((total, song) => song.duration_time + total, 0)
+    const durationIncrements = selectedSongs.reduce((total, song) => song.duration_time + total, 0)
+    const totalDurationTime = inputValues.total_duration_time + durationIncrements
     setInputValues(prevState => ({
       ...prevState,
       songs: [...inputValues.songs, ...selectedSongs],
@@ -58,15 +65,12 @@ const Repertoire = () => {
           {convertToHours(inputValues.target_duration_time)}
         </span>
       </div>
-      <div>
-        レパートリー
-      </div>
-      <div className="relative h-96 overflow-y-auto">
+      <div className="relative h-96 overflow-y-auto mb-8">
         <div className="">
           <ul>
             {
               songs.map((song, index) => (
-                <RepertoireSong key={index} value={song} onSongSelected={handleSongSelect} />
+                <RepertoireSong key={index} value={song} isSelected={() => songIds.includes(song.id)} onSongSelected={handleSongSelect} />
               ))
             }
           </ul>
@@ -74,7 +78,7 @@ const Repertoire = () => {
       </div>
       <div className="text-center">
         <div>
-          <button onClick={addSongs} className="align-center mx-0 rounded-full bg-blue-500 w-64 h-12">
+          <button onClick={addSongs} className="align-center mx-0 rounded-full bg-blue-500 w-[80%] h-12">
             選択した曲をセットリストに追加する
           </button>
         </div>
