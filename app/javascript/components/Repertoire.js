@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'
-import { useInputValue } from './InputValueContext';
-import RepertoireSong from './RepertoireSong';
-import { convertToHours, handleAjaxError } from '../helpers/helpers'
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useInputValue } from "./InputValueContext";
+import RepertoireSong from "./RepertoireSong";
+import { convertToHours, handleAjaxError } from "../helpers/helpers";
 
 const Repertoire = () => {
   const [songs, setSongs] = useState([]);
@@ -10,28 +10,28 @@ const Repertoire = () => {
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
-  const [ inputValues, setInputValues ] = useInputValue();
-  const [ selectedSongs, setSelectedSongs ] = useState([]);
+  const [inputValues, setInputValues] = useInputValue();
+  const [selectedSongs, setSelectedSongs] = useState([]);
 
   const handleSongSelect = (song) => {
     if (selectedSongs.includes(song)) {
-      setSelectedSongs(prevState => prevState.filter(i => i !== song));
+      setSelectedSongs((prevState) => prevState.filter((i) => i !== song));
     } else {
-      setSelectedSongs(prevState => [...prevState, song]);
+      setSelectedSongs((prevState) => [...prevState, song]);
     }
-  }
+  };
 
-  const songIds = inputValues.songs.map(song => song.id)
+  const songIds = inputValues.songs.map((song) => song.id);
 
   useEffect(() => {
     const fetchSongs = async () => {
       try {
-        const response = await window.fetch('/api/songs');
+        const response = await window.fetch("/api/songs");
         if (!response.ok) throw Error(response.statusText);
         const fetchedSongs = await response.json();
-        setSongs(fetchedSongs)
+        setSongs(fetchedSongs);
       } catch (error) {
-        handleAjaxError(error)
+        handleAjaxError(error);
       }
 
       setIsLoading(false);
@@ -41,44 +41,48 @@ const Repertoire = () => {
   }, []);
 
   const addSongs = () => {
-    const durationIncrements = selectedSongs.reduce((total, song) => song.duration_time + total, 0)
-    const totalDurationTime = inputValues.total_duration_time + durationIncrements
-    setInputValues(prevState => ({
+    const durationIncrements = selectedSongs.reduce(
+      (total, song) => song.duration_time + total,
+      0,
+    );
+    const totalDurationTime =
+      inputValues.total_duration_time + durationIncrements;
+    setInputValues((prevState) => ({
       ...prevState,
       songs: [...inputValues.songs, ...selectedSongs],
       total_duration_time: totalDurationTime,
-    }))
-    navigate('/setlists/new/songs')
-  }
+    }));
+    navigate("/setlists/new/songs");
+  };
 
   return (
     <>
-      <p className="text-2xl text-center mb-4">
-        {inputValues.setlist_title}
-      </p>
+      <p className="text-2xl text-center mb-4">{inputValues.setlist_title}</p>
       <div className="text-center mb-4">
-        <span>
-          {convertToHours(inputValues.total_duration_time)}
-        </span>
+        <span>{convertToHours(inputValues.total_duration_time)}</span>
         <span>/</span>
-        <span>
-          {convertToHours(inputValues.target_duration_time)}
-        </span>
+        <span>{convertToHours(inputValues.target_duration_time)}</span>
       </div>
       <div className="relative h-96 overflow-y-auto mb-8">
         <div className="">
           <ul>
-            {
-              songs.map((song, index) => (
-                <RepertoireSong key={index} value={song} isSelected={() => songIds.includes(song.id)} onSongSelected={handleSongSelect} />
-              ))
-            }
+            {songs.map((song, index) => (
+              <RepertoireSong
+                key={index}
+                value={song}
+                isSelected={() => songIds.includes(song.id)}
+                onSongSelected={handleSongSelect}
+              />
+            ))}
           </ul>
         </div>
       </div>
       <div className="text-center">
         <div>
-          <button onClick={addSongs} className="align-center mx-0 rounded-full bg-blue-500 w-[80%] h-12">
+          <button
+            onClick={addSongs}
+            className="align-center mx-0 rounded-full bg-blue-500 w-[80%] h-12"
+          >
             選択した曲をセットリストに追加する
           </button>
         </div>

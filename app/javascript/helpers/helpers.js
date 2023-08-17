@@ -14,8 +14,8 @@ export const convertToMinutes = (milliSeconds) => {
 };
 
 export const convertToMilliSeconds = (hours, minutes) => {
-  return (hours * 60 + minutes) * 60 * 1000
-}
+  return (hours * 60 + minutes) * 60 * 1000;
+};
 
 export const handleAjaxError = (err) => {
   error(err.message);

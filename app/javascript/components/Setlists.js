@@ -17,8 +17,8 @@ const Setlists = () => {
       }
     };
 
-      fetchSetlists();
-    }, []);
+    fetchSetlists();
+  }, []);
 
   return (
     <>
