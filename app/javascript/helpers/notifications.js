@@ -1,8 +1,8 @@
-import { toast, Flip } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, Flip } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const defaults = {
-  position: 'top-right',
+  position: "top-right",
   autoClose: 5000,
   hideProgressBar: true,
   closeOnClick: true,

@@ -6,7 +6,8 @@
     "watch": "esbuild app/javascript/*.* --watch --bundle --outdir=app/assets/builds --loader:.js=jsx",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
     "lint:eslint": "eslint 'app/javascript/**/*.{js,jsx}' --max-warnings=0",
-    "lint:prettier": "prettier app/javascript/**/*.{js,jsx} --check"
+    "lint:prettier": "prettier app/javascript/**/*.{js,jsx} --check",
+    "lint:write": "prettier app/javascript/**/*.{js,jsx} --write"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.2.0",
