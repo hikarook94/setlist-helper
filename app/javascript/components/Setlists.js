@@ -4,8 +4,6 @@ import ListedSetlist from "./ListedSetlist";
 
 const Setlists = () => {
   const [setlists, setSetlists] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,11 +13,8 @@ const Setlists = () => {
         const data = await response.json();
         setSetlists(data);
       } catch (error) {
-        setIsError(true);
         console.error(error);
       }
-
-      setIsLoading(false);
     };
 
     fetchData();

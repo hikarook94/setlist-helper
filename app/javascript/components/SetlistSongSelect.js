@@ -5,7 +5,7 @@ import { handleAjaxError } from "../helpers/helpers";
 import { useNavigate } from "react-router-dom";
 
 const SetlistSongSelect = () => {
-  const [inputValues, setInputValues] = useInputValue();
+  const [inputValues] = useInputValue();
   const updateInputValue = useUpdateInputValue();
   const navigate = useNavigate();
   const [selectedSongs, setSelectedSongs] = useState({
@@ -25,9 +25,9 @@ const SetlistSongSelect = () => {
       });
       if (!response.ok) throw Error(response.statusText);
       const data = await response.json();
-      const fetched_song_ids = data.songs.map((song) => song.id);
+      const fetchedSongIds = data.songs.map((song) => song.id);
       setSelectedSongs(data);
-      updateInputValue("song_ids", fetched_song_ids);
+      updateInputValue("song_ids", fetchedSongIds);
       updateInputValue("total_duration_time", data.total_duration_time);
     } catch (error) {
       handleAjaxError(error);

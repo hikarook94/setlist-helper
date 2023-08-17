@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import SetlistForm from "./SetlistForm";
 import SetlistSongSelect from "./SetlistSongSelect";
 import { InputValueProvider } from "./InputValueContext";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { injectStyle } from "react-toastify/dist/inject-style";
 
