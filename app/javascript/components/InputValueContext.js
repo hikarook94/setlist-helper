@@ -27,7 +27,7 @@ export const useInputValue = () => {
 };
 
 export const useUpdateInputValue = () => {
-  const [ , setInputValues] = React.useContext(InputValueContext);
+  const [, setInputValues] = React.useContext(InputValueContext);
 
   const updateInputValue = (key, newValue) => {
     setInputValues((prevState) => ({

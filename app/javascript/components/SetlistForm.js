@@ -19,7 +19,7 @@ const schema = yup
 
 const SetlistForm = () => {
   const navigate = useNavigate();
-  const [ , setInputValues] = useInputValue();
+  const [, setInputValues] = useInputValue();
   const {
     register,
     handleSubmit,
