@@ -1,11 +1,11 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState } from "react";
 
 const InputValueContext = createContext();
 
 export const InputValueProvider = ({ children }) => {
   const [inputValues, setInputValues] = useState({
     song_ids: [],
-    total_duration_time: 0
+    total_duration_time: 0,
   });
   const value = [inputValues, setInputValues];
 
@@ -27,13 +27,13 @@ export const useInputValue = () => {
 };
 
 export const useUpdateInputValue = () => {
-  const [ inputValues, setInputValues ] = React.useContext(InputValueContext);
+  const [inputValues, setInputValues] = React.useContext(InputValueContext);
 
   const updateInputValue = (key, newValue) => {
-    setInputValues(prevState => ({
+    setInputValues((prevState) => ({
       ...prevState,
-      [key]: newValue
-    }))
-  }
+      [key]: newValue,
+    }));
+  };
   return updateInputValue;
-}
+};

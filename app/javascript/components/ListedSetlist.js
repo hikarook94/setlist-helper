@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
-import { convertToHours } from '../helpers/helpers'
+import React from "react";
+import { Link } from "react-router-dom";
+import { convertToHours } from "../helpers/helpers";
 
 function ListedSetlist(props) {
   return (
@@ -19,7 +19,7 @@ function ListedSetlist(props) {
         </li>
       </div>
     </>
-  )
+  );
 }
 
 export default ListedSetlist;
