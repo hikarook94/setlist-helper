@@ -5,5 +5,6 @@ class SongSetlist < ApplicationRecord
   belongs_to :setlist
 
   validates :position, presence: true
+  validates :position, uniqueness: { scope: [:song_id, :setlist_id]}
   validates :position, numericality: { greater_than_or_equal_to: 0 }
 end
