@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { convertToHours } from '../helpers/helpers'
 import SetlistSong from './SetlistSong';
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 const Setlist = () => {
   const [setlist, setSetlist] = useState({
@@ -15,7 +15,6 @@ const Setlist = () => {
         const response = await window.fetch(`/api/setlists/${id}`);
         if (!response.ok) throw Error(response.statusText);
         const fetchedSetlist = await response.json();
-        console.log(fetchedSetlist.songs);
         setSetlist(fetchedSetlist);
       } catch (error) {
         handleAjaxError(error);
