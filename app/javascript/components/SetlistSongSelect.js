@@ -60,9 +60,7 @@ const SetlistSongSelect = () => {
     <>
       <p className="text-2xl text-center mb-2">{inputValues.setlist_title}</p>
       <div className="text-center mb-4">
-        <div className="mb-2">
-          {inputValues.songs.length}曲
-        </div>
+        <div className="mb-2">{inputValues.songs.length}曲</div>
         <span>{convertToHours(inputValues.total_duration_time)}</span>
         <span>/</span>
         <span>{convertToHours(inputValues.target_duration_time)}</span>

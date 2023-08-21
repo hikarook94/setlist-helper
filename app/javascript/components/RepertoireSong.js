@@ -2,7 +2,6 @@ import React from "react";
 import { convertToMinutes } from "../helpers/helpers";
 
 function RepertoireSong(props) {
-
   const handleClick = () => {
     props.onSongSelected(props.value);
   };
@@ -13,7 +12,7 @@ function RepertoireSong(props) {
         className="text-xl w-16 text-center flex justify-center items-center"
         onClick={handleClick}
       >
-        {props.isSelected ? <span>✔️</span>: <span>+</span>}
+        {props.isSelected ? <span>✔️</span> : <span>+</span>}
       </div>
       <li className="mr-8 mb-1 px-4 py-2 border w-full">
         <div>

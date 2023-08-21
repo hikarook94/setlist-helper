@@ -13,15 +13,17 @@ const Repertoire = () => {
 
   const handleSongSelect = (song) => {
     if (isSelected(song)) {
-      setSelectedSongs((prevState) => prevState.filter((i) => i.id !== song.id));
+      setSelectedSongs((prevState) =>
+        prevState.filter((i) => i.id !== song.id),
+      );
     } else {
       setSelectedSongs((prevState) => [...prevState, song]);
     }
   };
 
   const isSelected = (song) => {
-    return selectedSongs.some(selectedSong => selectedSong.id === song.id)
-  }
+    return selectedSongs.some((selectedSong) => selectedSong.id === song.id);
+  };
 
   useEffect(() => {
     const fetchSongs = async () => {

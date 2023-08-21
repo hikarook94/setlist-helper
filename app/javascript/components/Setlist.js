@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { convertToHours, handleAjaxError } from '../helpers/helpers'
-import SetlistSong from './SetlistSong';
-import { Link, useParams } from 'react-router-dom'
+import { convertToHours, handleAjaxError } from "../helpers/helpers";
+import SetlistSong from "./SetlistSong";
+import { Link, useParams } from "react-router-dom";
 
 const Setlist = () => {
   const [setlist, setSetlist] = useState({
-    songs: []
+    songs: [],
   });
   const { id } = useParams();
 
@@ -34,25 +34,17 @@ const Setlist = () => {
           <h1 className="text-2xl">{setlist.title}</h1>
         </div>
         <div className="text-center mb-4">
-          <div className="mb-2">
-            {setlist.songs_count}曲
-          </div>
-          <span>
-            {convertToHours(setlist.total_duration_time)}
-          </span>
+          <div className="mb-2">{setlist.songs_count}曲</div>
+          <span>{convertToHours(setlist.total_duration_time)}</span>
           <span>/</span>
-          <span>
-            {convertToHours(setlist.target_duration_time)}
-          </span>
+          <span>{convertToHours(setlist.target_duration_time)}</span>
         </div>
         <div className="relative h-4/5 overflow-y-auto mx-4 mb-8">
           <div className="h-full">
             <ul>
-              {
-                setlist.songs.map((song, index) => (
-                  <SetlistSong key={song.id} value={song} index={index} />
-                ))
-              }
+              {setlist.songs.map((song, index) => (
+                <SetlistSong key={song.id} value={song} index={index} />
+              ))}
             </ul>
           </div>
         </div>
