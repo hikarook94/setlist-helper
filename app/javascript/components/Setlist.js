@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { convertToHours } from '../helpers/helpers'
+import { convertToHours, handleAjaxError } from '../helpers/helpers'
 import SetlistSong from './SetlistSong';
 import { Link, useParams } from 'react-router-dom'
 
