@@ -76,7 +76,7 @@ const SetlistSongSelect = () => {
               </li>
             </div>
             {inputValues.songs.map((song) => (
-              <ListedSong key={song.id} value={song} />
+              <ListedSong key={song.id} song={song} />
             ))}
           </ul>
         </div>

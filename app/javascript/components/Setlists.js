@@ -35,7 +35,7 @@ const Setlists = () => {
               </li>
             </div>
             {setlists.map((setlist) => (
-              <ListedSetlist key={setlist.id} value={setlist} />
+              <ListedSetlist key={setlist.id} setlist={setlist} />
             ))}
           </ul>
         </div>

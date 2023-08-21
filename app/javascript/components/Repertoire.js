@@ -67,7 +67,7 @@ const Repertoire = () => {
             {songs.map((song) => (
               <RepertoireSong
                 key={song.id}
-                value={song}
+                song={song}
                 isSelected={isSelected(song)}
                 onSongSelected={handleSongSelect}
               />

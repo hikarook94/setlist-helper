@@ -43,7 +43,7 @@ const Setlist = () => {
           <div className="h-full">
             <ul>
               {setlist.songs.map((song, index) => (
-                <SetlistSong key={song.id} value={song} index={index} />
+                <SetlistSong key={song.id} song={song} index={index} />
               ))}
             </ul>
           </div>
