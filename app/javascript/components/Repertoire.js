@@ -9,17 +9,19 @@ const Repertoire = () => {
   const navigate = useNavigate();
 
   const [inputValues, setInputValues] = useInputValue();
-  const [selectedSongs, setSelectedSongs] = useState([]);
+  const [selectedSongs, setSelectedSongs] = useState(inputValues.songs);
 
   const handleSongSelect = (song) => {
-    if (selectedSongs.includes(song)) {
-      setSelectedSongs((prevState) => prevState.filter((i) => i !== song));
+    if (isSelected(song)) {
+      setSelectedSongs((prevState) => prevState.filter((i) => i.id !== song.id));
     } else {
       setSelectedSongs((prevState) => [...prevState, song]);
     }
   };
 
-  const songIds = inputValues.songs.map((song) => song.id);
+  const isSelected = (song) => {
+    return selectedSongs.some(selectedSong => selectedSong.id === song.id)
+  }
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -37,15 +39,13 @@ const Repertoire = () => {
   }, []);
 
   const addSongs = () => {
-    const durationIncrements = selectedSongs.reduce(
+    const totalDurationTime = selectedSongs.reduce(
       (total, song) => song.duration_time + total,
       0,
     );
-    const totalDurationTime =
-      inputValues.total_duration_time + durationIncrements;
     setInputValues((prevState) => ({
       ...prevState,
-      songs: [...inputValues.songs, ...selectedSongs],
+      songs: selectedSongs,
       total_duration_time: totalDurationTime,
     }));
     navigate("/setlists/new/songs");
@@ -66,7 +66,7 @@ const Repertoire = () => {
               <RepertoireSong
                 key={song.id}
                 value={song}
-                isSelected={() => songIds.includes(song.id)}
+                isSelected={isSelected(song)}
                 onSongSelected={handleSongSelect}
               />
             ))}
