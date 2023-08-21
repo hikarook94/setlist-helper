@@ -5,7 +5,10 @@ import { Link, useParams } from "react-router-dom";
 
 const Setlist = () => {
   const [setlist, setSetlist] = useState({
+    title: '',
     songs: [],
+    total_duration_time: 0,
+    target_duration_time: 0,
   });
   const { id } = useParams();
 
