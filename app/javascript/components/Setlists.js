@@ -6,7 +6,7 @@ const Setlists = () => {
   const [setlists, setSetlists] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchSetlists = async () => {
       try {
         const response = await window.fetch("/api/setlists");
         if (!response.ok) throw Error(response.statusText);
@@ -17,7 +17,7 @@ const Setlists = () => {
       }
     };
 
-    fetchData();
+    fetchSetlists();
   }, []);
 
   return (

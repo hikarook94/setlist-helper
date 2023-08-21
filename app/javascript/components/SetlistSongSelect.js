@@ -1,34 +1,33 @@
-import React, { useState } from "react";
-import { useInputValue, useUpdateInputValue } from "./InputValueContext";
+import React from "react";
+import { useInputValue } from "./InputValueContext";
 import ListedSong from "./ListedSong";
-import { handleAjaxError } from "../helpers/helpers";
-import { useNavigate } from "react-router-dom";
+import { handleAjaxError, convertToHours } from "../helpers/helpers";
+import { useNavigate, Link } from "react-router-dom";
 
 const SetlistSongSelect = () => {
-  const [inputValues] = useInputValue();
-  const updateInputValue = useUpdateInputValue();
+  const [inputValues, setInputValues] = useInputValue();
   const navigate = useNavigate();
-  const [selectedSongs, setSelectedSongs] = useState({
-    total_hours: 0,
-    total_minutes: 0,
-    songs: [],
-  });
 
   const fetchRandomSongs = async () => {
     try {
+      const songIds = inputValues.songs.map((song) => song.id);
       const response = await window.fetch("/api/songs/random", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(inputValues),
+        body: JSON.stringify({
+          song_ids: songIds,
+          total_duration_time: inputValues.total_duration_time,
+          target_duration_time: inputValues.target_duration_time,
+        }),
       });
       if (!response.ok) throw Error(response.statusText);
       const data = await response.json();
-      const fetchedSongIds = data.songs.map((song) => song.id);
-      setSelectedSongs(data);
-      updateInputValue("song_ids", fetchedSongIds);
-      updateInputValue("total_duration_time", data.total_duration_time);
+      setInputValues((prevState) => ({
+        ...prevState,
+        ...data,
+      }));
     } catch (error) {
       handleAjaxError(error);
     }
@@ -36,12 +35,18 @@ const SetlistSongSelect = () => {
 
   const saveSetlist = async () => {
     try {
+      const songIds = inputValues.songs.map((song) => song.id);
       const response = await window.fetch("/api/setlists", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(inputValues),
+        body: JSON.stringify({
+          song_ids: songIds,
+          title: inputValues.setlist_title,
+          total_duration_time: inputValues.total_duration_time,
+          target_duration_time: inputValues.target_duration_time,
+        }),
       });
       if (!response.ok) throw Error(response.statusText);
       const savedSetlist = await response.json();
@@ -53,20 +58,23 @@ const SetlistSongSelect = () => {
 
   return (
     <>
-      <p className="text-2xl text-center mb-4">{inputValues.setlistTitle}</p>
+      <p className="text-2xl text-center mb-4">{inputValues.setlist_title}</p>
       <div className="text-center mb-4">
-        <span>
-          {selectedSongs.total_hours} 時間 {selectedSongs.total_minutes} 分
-        </span>
+        <span>{convertToHours(inputValues.total_duration_time)}</span>
         <span>/</span>
-        <span>
-          {inputValues.setlistHours} 時間 {inputValues.setlistMinutes} 分
-        </span>
+        <span>{convertToHours(inputValues.target_duration_time)}</span>
       </div>
-      <div className="relative h-96 overflow-y-auto mx-4 mb-8">
+      <div className="relative h-4/5 overflow-y-auto mx-4 mb-8">
         <div className="h-full">
           <ul>
-            {selectedSongs.songs.map((song) => (
+            <div className="mb-1 px-4 py-2 border">
+              <li>
+                <Link to="/setlists/new/songs/repertoire">
+                  <div>曲を追加する</div>
+                </Link>
+              </li>
+            </div>
+            {inputValues.songs.map((song) => (
               <ListedSong key={song.id} value={song} />
             ))}
           </ul>

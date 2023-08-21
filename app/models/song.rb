@@ -28,9 +28,7 @@ class Song < ApplicationRecord
       end
     end
 
-    total_hours, total_minutes = Song.milliseconds_to_time(total_duration_time)
-
-    { songs: selected_songs, total_hours:, total_minutes:, total_duration_time: }
+    { songs: selected_songs, total_duration_time: }
   end
 
   def self.milliseconds_to_time(milliseconds)
