@@ -62,9 +62,9 @@ const Repertoire = () => {
       <div className="relative h-96 overflow-y-auto mb-8">
         <div className="">
           <ul>
-            {songs.map((song, index) => (
+            {songs.map((song) => (
               <RepertoireSong
-                key={index}
+                key={song.id}
                 value={song}
                 isSelected={() => songIds.includes(song.id)}
                 onSongSelected={handleSongSelect}
