@@ -15,8 +15,7 @@ function RepertoireSong(props) {
         className="text-xl w-16 text-center flex justify-center items-center"
         onClick={handleClick}
       >
-        {!isSelected && <span>+</span>}
-        {isSelected && <span>✔️</span>}
+        {props.isSelected ? <span>✔️</span>: <span>+</span>}
       </div>
       <li className="mr-8 mb-1 px-4 py-2 border w-full">
         <div>
