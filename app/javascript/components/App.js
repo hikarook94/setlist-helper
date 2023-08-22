@@ -10,7 +10,7 @@ const App = () => {
     <Routes>
       <Route path="/setlists" element={<Setlists />} />
       <Route path="/setlists/:id" element={<Setlist />} />
-      <Route path="/setlists/:id/edit" element={<SetlistEdit />} />
+      <Route path="/setlists/:id/edit/*" element={<SetlistEdit />} />
       <Route path="/setlists/new/*" element={<SetlistCreate />} />
     </Routes>
   );
