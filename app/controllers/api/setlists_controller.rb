@@ -32,6 +32,7 @@ class Api::SetlistsController < ApplicationController
 
   def update
     @setlist = Setlist.includes(:songs).find(params[:id])
+    @songs = Song.find(params[:song_ids])
 
     ActiveRecord::Base.transaction do
       @setlist.update!(setlist_params)
@@ -50,11 +51,10 @@ class Api::SetlistsController < ApplicationController
   end
 
   def update_song_setlists!(song_ids)
-    @setlist.song_setlists.where.not(song_id: song_ids).destroy_all
+    @setlist.song_setlists.destroy_all
 
-    song_ids.each_with_index do |song_id, i|
-      song_setlist = @setlist.song_setlists.find_or_initialize_by(song_id:)
-      song_setlist.update!(song_id:, position: i)
+    @songs.each_with_index do |song, i|
+      @setlist.song_setlists.create!(song:, position: i)
     end
   end
 
