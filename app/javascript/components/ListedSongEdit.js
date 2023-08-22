@@ -6,8 +6,8 @@ function ListedSongEdit({ song, onSongDeleted }) {
     onSongDeleted(song)
   }
   return (
-    <>
-      <div className="mb-1 px-4 py-2 border">
+    <div className="flex w-full">
+      <div className="mb-1 px-4 py-2 border w-4/5">
         <li>
           <div className="text-lg">{song.name}</div>
           <div className="text-gray-400 text-sm">{song.artist}</div>
@@ -16,8 +16,8 @@ function ListedSongEdit({ song, onSongDeleted }) {
           </div>
         </li>
       </div>
-      <div onClick={handleDelete}>削除</div>
-    </>
+      <div className="w-1/5" onClick={handleDelete}>削除</div>
+    </div>
   );
 }
 
