@@ -7,6 +7,17 @@ export const convertToHours = (milliSeconds) => {
   return `${hours} 時間 ${remainingMinutes} 分`;
 };
 
+export const convertToHour = (milliSeconds) => {
+  const minutes = Math.floor(milliSeconds / 60000);
+  return Math.floor(minutes / 60);
+};
+
+export const convertToRemainingMinute = (milliSeconds) => {
+  const minutes = Math.floor(milliSeconds / 60000);
+  const hours = Math.floor(minutes / 60);
+  return  minutes % 60;
+};
+
 export const convertToMinutes = (milliSeconds) => {
   const minutes = Math.floor(milliSeconds / 60000);
   const seconds = ((milliSeconds % 60000) / 1000).toFixed(0);
