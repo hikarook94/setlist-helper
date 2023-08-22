@@ -6,6 +6,11 @@ class Api::SetlistsController < ApplicationController
     render json: @setlists.as_json(methods: %i[songs_count total_duration_time])
   end
 
+  def show
+    @setlist = Setlist.includes(:songs).find(params[:id])
+    render json: @setlist.as_json(include: :songs, methods: %i[songs_count total_duration_time])
+  end
+
   def create
     @setlist = Setlist.new(setlist_params)
     @songs = Song.find(params[:song_ids])
