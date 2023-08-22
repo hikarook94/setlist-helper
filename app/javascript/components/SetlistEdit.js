@@ -182,9 +182,9 @@ const SetlistEdit = () => {
                   </Link>
                 </li>
               </div>
-              {/* {setlist.songs.map((song) => (
+              {setlist.songs.map((song) => (
                 <ListedSong key={song.id} song={song} />
-              ))} */}
+              ))}
             </ul>
           </div>
         </div>
