@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { handleAjaxError, convertToHours, convertToHour, convertToRemainingMinute, convertToMilliSeconds } from "../helpers/helpers";
-import ListedSong from "./ListedSong";
+import ListedSongEdit from "./ListedSongEdit";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { setLocale } from "yup";
@@ -134,6 +134,13 @@ const SetlistEdit = () => {
     }))
   }
 
+  const handleSongDeleted = (song) => {
+    setSetlist((prevState) =>({
+      ...prevState,
+      songs: prevState.songs.filter((i) => i.id !== song.id),})
+    );
+  }
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="mx-4">
@@ -183,7 +190,7 @@ const SetlistEdit = () => {
                 </li>
               </div>
               {setlist.songs.map((song) => (
-                <ListedSong key={song.id} song={song} />
+                <ListedSongEdit key={song.id} song={song} onSongDeleted={handleSongDeleted} />
               ))}
             </ul>
           </div>
