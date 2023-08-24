@@ -15,13 +15,13 @@ const SetlistCreate = () => {
     <>
       <div className="h-screen">
         <ToastContainer />
-          <InputValueProvider>
-            <Routes>
-              <Route path="/" element={<SetlistSongEdit />} />
-              <Route path="/repertoire" element={<Repertoire />} />
-            </Routes>
-          </InputValueProvider>
-        </div>
+        <InputValueProvider>
+          <Routes>
+            <Route path="/" element={<SetlistSongEdit />} />
+            <Route path="/repertoire" element={<Repertoire />} />
+          </Routes>
+        </InputValueProvider>
+      </div>
     </>
   );
 };

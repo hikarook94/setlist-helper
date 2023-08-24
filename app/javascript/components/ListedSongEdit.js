@@ -3,8 +3,8 @@ import { convertToMinutes } from "../helpers/helpers";
 
 function ListedSongEdit({ song, onSongDeleted }) {
   const handleDelete = () => {
-    onSongDeleted(song)
-  }
+    onSongDeleted(song);
+  };
   return (
     <div className="flex w-full">
       <div className="mb-1 px-4 py-2 border w-4/5">
@@ -16,7 +16,9 @@ function ListedSongEdit({ song, onSongDeleted }) {
           </div>
         </li>
       </div>
-      <div className="w-1/5" onClick={handleDelete}>削除</div>
+      <div className="w-1/5" onClick={handleDelete}>
+        削除
+      </div>
     </div>
   );
 }
