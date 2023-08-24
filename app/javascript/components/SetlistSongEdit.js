@@ -172,6 +172,7 @@ const SetlistSongEdit = () => {
             type="text"
             name="setlistTitle"
           />
+          <div className="text-red-700">{errors.setlistTitle?.message}</div>
         </div>
         <div className="text-center mb-4">
           <span>{convertToHours(inputValues.total_duration_time)}</span>
@@ -198,6 +199,8 @@ const SetlistSongEdit = () => {
             />
             <label htmlFor="setlistMinutes">分</label>
           </span>
+          <div className="text-red-700">{errors.setlistHours?.message}</div>
+          <div className="text-red-700">{errors.setlistMinutes?.message}</div>
         </div>
         <div className="relative h-4/5 overflow-y-auto mx-4 mb-8">
           <div className="h-full">
