@@ -52,9 +52,17 @@ class Api::SetlistsController < ApplicationController
   end
 
   def create_song_setlists!(song_ids)
-    song_ids.each_with_index do |song_id, i|
-      @setlist.song_setlists.create!(song_id:, position: i)
+    current_time = Time.current
+    song_setlists_data = song_ids.map.with_index do |song_id, i|
+      {
+        song_id:,
+        setlist_id: @setlist.id,
+        position: i,
+        created_at: current_time,
+        updated_at: current_time
+      }
     end
+    SongSetlist.insert_all!(song_setlists_data) # rubocop:disable Rails/SkipsModelValidations
   end
 
   def set_setlist
