@@ -2,7 +2,7 @@
 
 class Api::SetlistsController < ApplicationController
   def index
-    @setlists = Setlist.includes(:songs).all
+    @setlists = Setlist.includes(:songs).order(created_at: :desc).all
     render json: @setlists.as_json(methods: %i[songs_count total_duration_time])
   end
 
