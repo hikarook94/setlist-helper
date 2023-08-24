@@ -55,7 +55,7 @@ const Repertoire = () => {
 
   return (
     <>
-      <p className="text-2xl text-center mb-4">{inputValues.setlist_title}</p>
+      <p className="text-2xl text-center mb-4">{inputValues.title}</p>
       <div className="text-center mb-4">
         <span>{convertToHours(inputValues.total_duration_time)}</span>
         <span>/</span>
