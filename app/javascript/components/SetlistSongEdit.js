@@ -46,13 +46,19 @@ const SetlistSongEdit = () => {
         setValue('setlistTitle', fetchedSetlist.title)
         setValue('setlistHours', convertToHour(fetchedSetlist.target_duration_time))
         setValue('setlistMinutes', convertToRemainingMinute(fetchedSetlist.target_duration_time))
-        // console.log('useEffect');＝
       } catch (error) {
         handleAjaxError(error);
       }
     };
 
-    fetchSetlist();
+    if (inputValues.id === undefined) {
+      fetchSetlist();
+    } else {
+      // /edit/repertoire から戻ってきたときに入力欄がリセットされるのでinputValuesから値をセットする
+      setValue('setlistTitle', inputValues.title)
+      setValue('setlistHours', convertToHour(inputValues.target_duration_time))
+      setValue('setlistMinutes', convertToRemainingMinute(inputValues.target_duration_time))
+    }
   }, []);
 
   const fetchRandomSongs = async () => {
@@ -111,23 +117,26 @@ const SetlistSongEdit = () => {
     }))
   }
   const updateSetlistHours = (e) => {
-    setSetlist((prevState) => ({
+    const inputHours = Number(e.target.value)
+    setInputValues((prevState) => ({
       ...prevState,
-      target_duration_time: convertToMilliSeconds(e.target.value, setlistMinutesWatch)
+      target_duration_time: convertToMilliSeconds(inputHours, setlistMinutesWatch)
     }))
   }
   const updateSetlistMinutes = (e) => {
-    setSetlist((prevState) => ({
+    const inputMinutes = Number(e.target.value)
+    setInputValues((prevState) => ({
       ...prevState,
-      target_duration_time: convertToMilliSeconds(setlistHoursWatch, e.target.value)
+      target_duration_time: convertToMilliSeconds(setlistHoursWatch, inputMinutes)
     }))
   }
 
   const handleSongDeleted = (song) => {
-    setSetlist((prevState) =>({
+    setInputValues((prevState) =>({
       ...prevState,
-      songs: prevState.songs.filter((i) => i.id !== song.id),})
-    );
+      songs: prevState.songs.filter((i) => i.id !== song.id),
+      total_duration_time: prevState.total_duration_time - song.duration_time,
+    }));
   }
 
   return (
