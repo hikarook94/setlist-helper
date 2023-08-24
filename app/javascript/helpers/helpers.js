@@ -14,7 +14,6 @@ export const convertToHour = (milliSeconds) => {
 
 export const convertToRemainingMinute = (milliSeconds) => {
   const minutes = Math.floor(milliSeconds / 60000);
-  const hours = Math.floor(minutes / 60);
   return minutes % 60;
 };
 
