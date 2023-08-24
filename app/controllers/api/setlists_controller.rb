@@ -13,14 +13,12 @@ class Api::SetlistsController < ApplicationController
 
   def create
     @setlist = Setlist.new(setlist_params)
-    set_song
 
     ActiveRecord::Base.transaction do
       @setlist.save!
-      create_song_setlists!
+      create_song_setlists!(params[:song_ids])
     end
     render json: @setlist
-
   rescue ActiveRecord::RecordInvalid => e
     render json: e.record.errors, status: :unprocessable_entity
   end
@@ -32,14 +30,12 @@ class Api::SetlistsController < ApplicationController
 
   def update
     set_setlist
-    set_song
 
     ActiveRecord::Base.transaction do
       @setlist.update!(setlist_params)
       update_song_setlists!(params[:song_ids])
     end
     render json: @setlist
-
   rescue ActiveRecord::RecordInvalid => e
     render json: e.record.errors, status: :unprocessable_entity
   end
@@ -52,23 +48,16 @@ class Api::SetlistsController < ApplicationController
 
   def update_song_setlists!(song_ids)
     @setlist.song_setlists.destroy_all
-
-    @songs.each_with_index do |song, i|
-      @setlist.song_setlists.create!(song:, position: i)
-    end
+    create_song_setlists!(song_ids)
   end
 
-  def create_song_setlists!
-    @songs.each_with_index do |song, i|
-      @setlist.song_setlists.create!(song:, position: i)
+  def create_song_setlists!(song_ids)
+    song_ids.each_with_index do |song_id, i|
+      @setlist.song_setlists.create!(song_id:, position: i)
     end
   end
 
   def set_setlist
     @setlist = Setlist.includes(:songs).find(params[:id])
-  end
-
-  def set_song
-    @songs = Song.find(params[:song_ids])
   end
 end
