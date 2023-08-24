@@ -7,13 +7,13 @@ class Api::SetlistsController < ApplicationController
   end
 
   def show
-    @setlist = Setlist.includes(:songs).find(params[:id])
+    set_setlist
     render json: @setlist.as_json(include: :songs, methods: %i[songs_count total_duration_time])
   end
 
   def create
     @setlist = Setlist.new(setlist_params)
-    @songs = Song.find(params[:song_ids])
+    set_song
 
     ActiveRecord::Base.transaction do
       @setlist.save!
@@ -26,13 +26,13 @@ class Api::SetlistsController < ApplicationController
   end
 
   def edit
-    @setlist = Setlist.includes(:songs).find(params[:id])
+    set_setlist
     render json: @setlist.as_json(include: :songs, methods: %i[songs_count total_duration_time])
   end
 
   def update
-    @setlist = Setlist.includes(:songs).find(params[:id])
-    @songs = Song.find(params[:song_ids])
+    set_setlist
+    set_song
 
     ActiveRecord::Base.transaction do
       @setlist.update!(setlist_params)
@@ -62,5 +62,13 @@ class Api::SetlistsController < ApplicationController
     @songs.each_with_index do |song, i|
       @setlist.song_setlists.create!(song:, position: i)
     end
+  end
+
+  def set_setlist
+    @setlist = Setlist.includes(:songs).find(params[:id])
+  end
+
+  def set_song
+    @songs = Song.find(params[:song_ids])
   end
 end
