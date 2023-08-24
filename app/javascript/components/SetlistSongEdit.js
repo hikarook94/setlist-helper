@@ -7,6 +7,7 @@ import { setLocale } from "yup";
 import * as ja from "yup-locale-ja";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useInputValue } from "./InputValueContext";
 
 setLocale(ja.suggestive);
 
@@ -19,13 +20,8 @@ const schema = yup
   .required();
 
 const SetlistSongEdit = () => {
+  const [inputValues, setInputValues] = useInputValue();
   const navigate = useNavigate();
-  const [setlist, setSetlist] = useState({
-    title: '',
-    songs: [],
-    target_duration_time: 0,
-    total_duration_time: 0,
-  }); // TODO: InputValueを使うよう修正
   const { id } = useParams();
   const {
     register,
@@ -46,8 +42,7 @@ const SetlistSongEdit = () => {
         const response = await window.fetch(`/api/setlists/${id}/edit`);
         if (!response.ok) throw Error(response.statusText);
         const fetchedSetlist = await response.json();
-        setSetlist(fetchedSetlist);
-        // inputに現在のセットリスト情報をセット
+        setInputValues(fetchedSetlist);
         setValue('setlistTitle', fetchedSetlist.title)
         setValue('setlistHours', convertToHour(fetchedSetlist.target_duration_time))
         setValue('setlistMinutes', convertToRemainingMinute(fetchedSetlist.target_duration_time))
@@ -62,7 +57,7 @@ const SetlistSongEdit = () => {
 
   const fetchRandomSongs = async () => {
     try {
-      const songIds = setlist.songs.map((song) => song.id);
+      const songIds = inputValues.songs.map((song) => song.id);
       const response = await window.fetch("/api/songs/random", {
         method: "POST",
         headers: {
@@ -70,14 +65,13 @@ const SetlistSongEdit = () => {
         },
         body: JSON.stringify({
           song_ids: songIds,
-          total_duration_time: setlist.total_duration_time,
-          target_duration_time: setlist.target_duration_time,
+          total_duration_time: inputValues.total_duration_time,
+          target_duration_time: inputValues.target_duration_time,
         }),
       });
       if (!response.ok) throw Error(response.statusText);
       const data = await response.json();
-      console.log(data);
-      setSetlist((prevState) => ({
+      setInputValues((prevState) => ({
         ...prevState,
         ...data,
       }));
@@ -88,8 +82,7 @@ const SetlistSongEdit = () => {
 
     const onSubmit = async () => {
       try {
-        // console.log(setlist);
-        const songIds = setlist.songs.map((song) => song.id);
+        const songIds = inputValues.songs.map((song) => song.id);
         const response = await window.fetch(`/api/setlists/${id}`, {
           method: "PUT",
           headers: {
@@ -98,9 +91,9 @@ const SetlistSongEdit = () => {
           },
           body: JSON.stringify({
             song_ids: songIds,
-            title: setlist.title,
-            total_duration_time: setlist.total_duration_time,
-            target_duration_time: setlist.target_duration_time,
+            title: inputValues.title,
+            total_duration_time: inputValues.total_duration_time,
+            target_duration_time: inputValues.target_duration_time,
           }),
         });
         if (!response.ok) throw Error(response.statusText);
@@ -112,7 +105,7 @@ const SetlistSongEdit = () => {
     };
 
   const updateSetlistTitle = (e) => {
-    setSetlist((prevState) => ({
+    setInputValues((prevState) => ({
       ...prevState,
       title: e.target.value,
     }))
@@ -150,7 +143,7 @@ const SetlistSongEdit = () => {
           />
         </div>
         <div className="text-center mb-4">
-          <span>{convertToHours(setlist.total_duration_time)}</span>
+          <span>{convertToHours(inputValues.total_duration_time)}</span>
           <span>/</span>
           <span>
             <input
@@ -185,7 +178,7 @@ const SetlistSongEdit = () => {
                   </Link>
                 </li>
               </div>
-              {setlist.songs.map((song) => (
+              {inputValues.songs.map((song) => (
                 <ListedSongEdit key={song.id} song={song} onSongDeleted={handleSongDeleted} />
               ))}
             </ul>
