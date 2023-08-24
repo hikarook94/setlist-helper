@@ -51,7 +51,7 @@ const Repertoire = () => {
       total_duration_time: totalDurationTime,
     }));
     navigate("..", {
-      relative: "path"
+      relative: "path",
     });
   };
 
