@@ -10,7 +10,7 @@ import { injectStyle } from "react-toastify/dist/inject-style";
 
 injectStyle();
 
-const SetlistCreate = () => {
+const SetlistEdit = () => {
   return (
     <>
       <div className="h-screen">
@@ -26,4 +26,4 @@ const SetlistCreate = () => {
   );
 };
 
-export default SetlistCreate;
+export default SetlistEdit;
