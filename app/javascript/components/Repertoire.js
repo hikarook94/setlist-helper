@@ -50,7 +50,7 @@ const Repertoire = () => {
       songs: selectedSongs,
       total_duration_time: totalDurationTime,
     }));
-    navigate("/setlists/new/songs");
+    navigate("..");
   };
 
   return (
