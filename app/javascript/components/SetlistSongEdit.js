@@ -40,8 +40,10 @@ const SetlistSongEdit = () => {
     defaultValues: {
       setlistTitle: inputValues.title,
       setlistHours: convertToHour(inputValues.target_duration_time),
-      setlistMinutes: convertToRemainingMinute(inputValues.target_duration_time),
-    }
+      setlistMinutes: convertToRemainingMinute(
+        inputValues.target_duration_time,
+      ),
+    },
   });
 
   const setlistHoursWatch = watch("setlistHours", 0);

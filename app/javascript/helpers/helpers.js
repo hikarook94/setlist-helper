@@ -1,9 +1,9 @@
 import { error } from "./notifications";
 
-const MILLISECONDS_PER_SECOND = 1000
-const SECONDS_PER_MINUTE = 60
-const MINUTES_PER_HOUR = 60
-const MILLISECONDS_PER_MINUTE = MILLISECONDS_PER_SECOND * SECONDS_PER_MINUTE
+const MILLISECONDS_PER_SECOND = 1000;
+const SECONDS_PER_MINUTE = 60;
+const MINUTES_PER_HOUR = 60;
+const MILLISECONDS_PER_MINUTE = MILLISECONDS_PER_SECOND * SECONDS_PER_MINUTE;
 
 export const convertToHours = (milliSeconds) => {
   const minutes = Math.floor(milliSeconds / MILLISECONDS_PER_MINUTE);
@@ -24,7 +24,10 @@ export const convertToRemainingMinute = (milliSeconds) => {
 
 export const convertToMinutes = (milliSeconds) => {
   const minutes = Math.floor(milliSeconds / MILLISECONDS_PER_MINUTE);
-  const seconds = ((milliSeconds % MILLISECONDS_PER_MINUTE) / MILLISECONDS_PER_SECOND).toFixed(0);
+  const seconds = (
+    (milliSeconds % MILLISECONDS_PER_MINUTE) /
+    MILLISECONDS_PER_SECOND
+  ).toFixed(0);
   return `${minutes} 分 ${seconds} 秒`;
 };
 
