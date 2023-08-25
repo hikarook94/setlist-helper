@@ -35,7 +35,7 @@ const SetlistForm = () => {
     );
     setInputValues((prevState) => ({
       ...prevState,
-      setlist_title: data.setlistTitle,
+      title: data.setlistTitle,
       target_duration_time: setlistTargetDurationTime,
     }));
     navigate("./songs");

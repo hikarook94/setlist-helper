@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 
 const Setlist = () => {
   const [setlist, setSetlist] = useState({
-    title: '',
+    title: "",
     songs: [],
     total_duration_time: 0,
     target_duration_time: 0,
@@ -33,6 +33,11 @@ const Setlist = () => {
         <div className="flex relative justify-center items-center pt-6 mb-2 mx-4">
           <Link to="/setlists">
             <div className="w-16 absolute vertical-center top-6 left-1">＜</div>
+          </Link>
+          <Link to={`/setlists/${id}/edit`}>
+            <div className="w-16 absolute vertical-center top-6 right-1">
+              編集
+            </div>
           </Link>
           <h1 className="text-2xl">{setlist.title}</h1>
         </div>
