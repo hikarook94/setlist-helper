@@ -16,21 +16,27 @@
   <div class="px-4 mb-2">
     <%= form.text_field :artist, placeholder:'アーティスト名', class: "border w-full px-4 py-2" %>
   </div>
-  <div>
-    <%= form.text_field :minutes, value: to_minutes(song.duration_time) %>
-    <%= form.label :minutes, '分' %>
-    <%= form.text_field :seconds, value: to_remaining_seconds(song.duration_time) %>
-    <%= form.label :seconds, '秒' %>
+  <div class="text-center mb-4">
+    <span>
+      <%= form.text_field :minutes, value: to_minutes(song.duration_time), class: "border w-24 px-2 py-1 text-right" %>
+      <%= form.label :minutes, '分', class: "mr-2" %>
+      <%= form.text_field :seconds, value: to_remaining_seconds(song.duration_time), class: "border w-24 px-2 py-1 text-right" %>
+      <%= form.label :seconds, '秒', class: "" %>
+    </span>
   </div>
-  <div>
-    <%= form.label :transposition, 'キー' %>
-    <%= form.number_field :transposition, in: -7..7, step: 1 %>
+  <div class="px-4 w-full mb-4">
+    <%= form.label :transposition, 'キー', class: "" %>
+    <%= form.number_field :transposition, in: -7..7, step: 1, class: "border text-right w-24 px-2 py-1 float-right" %>
   </div>
-  <div>
-    <%= form.label :memo, 'メモ' %>
+  <div class="px-4 w-full mb-6">
+    <div class="mb-2">
+      <%= form.label :memo, 'メモ', class: "" %>
+    </div>
     <div>
-      <%= form.text_area :memo %>
+      <%= form.text_area :memo, class: "border w-full h-32 px-2 py-2" %>
     </div>
   </div>
-  <%= form.submit '登録する' %>
+  <div class="text-center">
+    <%= form.submit '登録する', class: "mx-0 rounded-full bg-blue-500 w-[80%] h-12" %>
+  </div>
 <% end %>
