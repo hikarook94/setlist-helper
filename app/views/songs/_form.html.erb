@@ -10,11 +10,11 @@
       </div>
     </div>
   </div>
-  <div>
-    <%= form.text_field :name, placeholder:'曲名' %>
+  <div class="px-4 mb-2">
+    <%= form.text_field :name, placeholder:'曲名', class: "border w-full px-4 py-2" %>
   </div>
-  <div>
-    <%= form.text_field :artist, placeholder:'アーティスト名' %>
+  <div class="px-4 mb-2">
+    <%= form.text_field :artist, placeholder:'アーティスト名', class: "border w-full px-4 py-2" %>
   </div>
   <div>
     <%= form.text_field :minutes, value: to_minutes(song.duration_time) %>
