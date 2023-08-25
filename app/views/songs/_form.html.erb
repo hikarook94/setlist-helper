@@ -1,7 +1,14 @@
 
 <%= form_with model: song do |form| %>
-  <div>
-    <%= form.file_field :cover_img %>
+  <div class="h-64 mb-6">
+    <div class="relative">
+      <div class="bg-gray-400 h-64 w-64 -ml-32 absolute top-1/2 left-1/2">
+        <label class="">
+          <div class="w-full h-full"></div>
+          <%= form.file_field :cover_img, class: "hidden" %>
+        </label>
+      </div>
+    </div>
   </div>
   <div>
     <%= form.text_field :name, placeholder:'曲名' %>
