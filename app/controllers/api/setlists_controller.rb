@@ -52,6 +52,8 @@ class Api::SetlistsController < ApplicationController
   end
 
   def create_song_setlists!(song_ids)
+    return if song_ids.empty?
+
     current_time = Time.current
     song_setlists_data = song_ids.map.with_index do |song_id, i|
       {
