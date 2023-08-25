@@ -160,11 +160,16 @@ const SetlistSongEdit = () => {
   };
 
   return (
-    <>
+    <div className="relative">
+      <div className="h-8">
+        <Link to="/setlists">
+              <div className="absolute vertical-center top-0 right-0 text-gray-400">×</div>
+        </Link>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)} className="mx-4">
-        <div>
+        <div className="mb-4">
           <input
-            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-2xl"
             {...register("setlistTitle", {
               onChange: (e) => updateSetlistTitle(e),
             })}
@@ -201,16 +206,14 @@ const SetlistSongEdit = () => {
           <div className="text-red-700">{errors.setlistHours?.message}</div>
           <div className="text-red-700">{errors.setlistMinutes?.message}</div>
         </div>
-        <div className="relative h-4/5 overflow-y-auto mx-4 mb-8">
+        <div className="mb-1 px-4 py-2 border">
+          <Link to={`/setlists/${id}/edit/repertoire`}>
+            <div>曲を追加する</div>
+          </Link>
+        </div>
+        <div className="relative max-h-[50vh] overflow-y-auto mb-8">
           <div className="h-full">
             <ul>
-              <div className="mb-1 px-4 py-2 border">
-                <li>
-                  <Link to={`/setlists/${id}/edit/repertoire`}>
-                    <div>曲を追加する</div>
-                  </Link>
-                </li>
-              </div>
               {inputValues.songs.map((song) => (
                 <ListedSongEdit
                   key={song.id}
@@ -240,7 +243,7 @@ const SetlistSongEdit = () => {
           </div>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

@@ -7,7 +7,7 @@ import { InputValueProvider } from "./InputValueContext";
 const SetlistEdit = () => {
   return (
     <>
-      <div className="h-screen">
+      <div className="h-screen p-4">
         <InputValueProvider>
           <Routes>
             <Route path="/" element={<SetlistSongEdit />} />
