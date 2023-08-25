@@ -7,14 +7,16 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './components/App';
 
 const container = document.getElementById('root');
-const root = createRoot(container);
+if (container) {
+  const root = createRoot(container);
 
-document.addEventListener('DOMContentLoaded', () => {
-  root.render(
-    <StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </StrictMode>
-  );
-});
+  document.addEventListener('DOMContentLoaded', () => {
+    root.render(
+      <StrictMode>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </StrictMode>
+    );
+  });
+}
