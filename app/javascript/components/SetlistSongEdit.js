@@ -37,6 +37,11 @@ const SetlistSongEdit = () => {
     watch,
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      setlistTitle: inputValues.title,
+      setlistHours: convertToHour(inputValues.target_duration_time),
+      setlistMinutes: convertToRemainingMinute(inputValues.target_duration_time),
+    }
   });
 
   const setlistHoursWatch = watch("setlistHours", 0);
@@ -65,14 +70,6 @@ const SetlistSongEdit = () => {
 
     if (inputValues.id === undefined) {
       fetchSetlist();
-    } else {
-      // /edit/repertoire から戻ってきたときに入力欄がリセットされるのでinputValuesから値をセットする
-      setValue("setlistTitle", inputValues.title);
-      setValue("setlistHours", convertToHour(inputValues.target_duration_time));
-      setValue(
-        "setlistMinutes",
-        convertToRemainingMinute(inputValues.target_duration_time),
-      );
     }
   }, []);
 
