@@ -8,7 +8,7 @@
   <div class="p-4">
     <div class="p-2">
       <% if @artist %>
-        <%= link_to '<', songs_path(sort_by: 'artists') %>
+        <%= link_to '＜', songs_path(sort_by: 'artists') %>
         <%= @artist %>
       <% else %>
         <%= select :option, :filter, options_for_select([['曲', songs_path(sort_by: 'songs')], ['アーティスト', songs_path(sort_by: 'artists')]], songs_path({sort_by: @sort_by})), {}, {onchange:"Turbo.visit(value)", class:"bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"} %>
