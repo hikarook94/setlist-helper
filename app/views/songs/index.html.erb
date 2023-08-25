@@ -28,8 +28,30 @@
         <p><%= link_to song.name, song %></p>
         <p><%= song.artist %><p>
       </div>
-      <div>
-        <p><%= link_to '削除', song, data: { turbo_method: :delete } %></p>
+    <% end %>
+    <div class="relative max-h-[600px] overflow-y-auto">
+      <div class="h-full">
+        <% if @sort_by == 'artists' %>
+          <% @artists.each do |artist| %>
+            <div class="mb-1 px-2">
+              <div class="px-4 py-2 border relative w-full h-12">
+                <%= link_to artist, songs_path(filter_by: artist), class:"absolute inset-0 flex items-center left-4" %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <% @songs.each do |song| %>
+            <div class="mb-1 px-2 relative">
+              <div class="px-4 py-2 border w-full">
+                <p class=""><%= link_to song.name, song %></p>
+                <p class="text-gray-400 text-sm"><%= song.artist %><p>
+              </div>
+              <div class="text-gray-400 absolute top-0 right-4">
+                <p><%= link_to '×', song, data: { turbo_method: :delete } %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
   <% end %>
