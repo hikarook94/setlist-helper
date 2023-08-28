@@ -1,29 +1,47 @@
-
 <%= form_with model: song do |form| %>
-  <div>
-    <%= form.file_field :cover_img %>
-  </div>
-  <div>
-    <%= form.text_field :name, placeholder:'曲名' %>
-  </div>
-  <div>
-    <%= form.text_field :artist, placeholder:'アーティスト名' %>
-  </div>
-  <div>
-    <%= form.text_field :minutes, value: to_minutes(song.duration_time) %>
-    <%= form.label :minutes, '分' %>
-    <%= form.text_field :seconds, value: to_remaining_seconds(song.duration_time) %>
-    <%= form.label :seconds, '秒' %>
-  </div>
-  <div>
-    <%= form.label :transposition, 'キー' %>
-    <%= form.number_field :transposition, in: -7..7, step: 1 %>
-  </div>
-  <div>
-    <%= form.label :memo, 'メモ' %>
-    <div>
-      <%= form.text_area :memo %>
+  <div class="h-64 mb-6">
+    <div class="relative">
+      <div class="border h-64 w-64 -ml-32 absolute top-1/2 left-1/2">
+        <label class="">
+          <div class="w-full h-full text-center" id="cover_image">
+            <% if @song.cover_img? %>
+              <%= image_tag @song.cover_img.url, size: "300x300" %>
+            <% else%>
+              <img id="cover_image_preview" src="">
+            <% end %>
+          </div>
+          <%= form.file_field :cover_img, class: "hidden", id: "uploader" %>
+        </label>
+      </div>
     </div>
   </div>
-  <%= form.submit '登録する' %>
+  <div class="px-4 mb-2">
+    <%= form.text_field :name, placeholder:'曲名', class: "border w-full px-4 py-2" %>
+  </div>
+  <div class="px-4 mb-2">
+    <%= form.text_field :artist, placeholder:'アーティスト名', class: "border w-full px-4 py-2" %>
+  </div>
+  <div class="text-center mb-4">
+    <span>
+      <%= form.text_field :minutes, value: to_minutes(song.duration_time), class: "border w-24 px-2 py-1 text-right" %>
+      <%= form.label :minutes, '分', class: "mr-2" %>
+      <%= form.text_field :seconds, value: to_remaining_seconds(song.duration_time), class: "border w-24 px-2 py-1 text-right" %>
+      <%= form.label :seconds, '秒', class: "" %>
+    </span>
+  </div>
+  <div class="px-4 w-full mb-4">
+    <%= form.label :transposition, 'キー', class: "" %>
+    <%= form.number_field :transposition, in: -7..7, step: 1, class: "border text-right w-24 px-2 py-1 float-right" %>
+  </div>
+  <div class="px-4 w-full mb-6">
+    <div class="mb-2">
+      <%= form.label :memo, 'メモ', class: "" %>
+    </div>
+    <div>
+      <%= form.text_area :memo, class: "border w-full h-32 px-2 py-2" %>
+    </div>
+  </div>
+  <div class="text-center">
+    <%= form.submit '登録する', class: "mx-0 rounded-full bg-blue-500 w-[80%] h-12" %>
+  </div>
 <% end %>
