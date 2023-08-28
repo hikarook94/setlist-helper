@@ -21,7 +21,7 @@ const Setlists = () => {
   }, []);
 
   return (
-    <div className="h-screen">
+    <div className="">
       <h1 className="text-2xl text-center mb-4 pt-4">セットリスト</h1>
       <div className="p-4">
         <div className="mb-1 px-4 py-2 border">

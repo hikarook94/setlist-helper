@@ -29,7 +29,7 @@ const Setlist = () => {
 
   return (
     <>
-      <div className="h-screen p-4">
+      <div className="h-4/5 p-4">
         <div className="flex relative justify-center items-center mb-2 mx-4">
           <Link to="/setlists">
             <div className="w-16 absolute vertical-center top-6 left-1">＜</div>
