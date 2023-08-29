@@ -29,7 +29,7 @@ const Setlist = () => {
 
   return (
     <>
-      <div className="h-4/5 p-4">
+      <div className="p-4">
         <div className="flex relative justify-center items-center mb-2 mx-4">
           <Link to="/setlists">
             <div className="w-16 absolute vertical-center top-6 left-1">＜</div>
@@ -47,7 +47,7 @@ const Setlist = () => {
           <span>/</span>
           <span>{convertToHours(setlist.target_duration_time)}</span>
         </div>
-        <div className="relative h-4/5 overflow-y-auto mx-2 mb-8">
+        <div className="relative max-h-[600px] overflow-y-auto mx-2 mb-8">
           <div className="h-full">
             <ul>
               {setlist.songs.map((song, index) => (
