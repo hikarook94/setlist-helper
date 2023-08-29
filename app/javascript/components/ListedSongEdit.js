@@ -16,7 +16,10 @@ function ListedSongEdit({ song, onSongDeleted }) {
           </div>
         </li>
       </div>
-      <div className="text-gray-400 absolute top-0 right-2" onClick={handleDelete}>
+      <div
+        className="text-gray-400 absolute top-0 right-2"
+        onClick={handleDelete}
+      >
         ×
       </div>
     </div>

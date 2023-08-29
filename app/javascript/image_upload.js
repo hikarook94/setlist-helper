@@ -1,14 +1,18 @@
-window.addEventListener('load', () => {
+document.addEventListener("turbo:load", () => {
   const uploader = document.querySelector('#uploader');
-  if (uploader) {
-    uploader.addEventListener('change', (e) => {
-      const file = uploader.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        const image = reader.result;
-        document.querySelector('#cover_image_preview').setAttribute('src', image);
+  if (!uploader) return;
+
+  uploader.addEventListener('change', event => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const preview = document.querySelector('#preview');
+      if (preview) {
+        preview.innerHTML = `<img src="${reader.result}">`;
       }
-    });
-  }
+    };
+
+    reader.readAsDataURL(file);
+  });
 });

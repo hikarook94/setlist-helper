@@ -163,7 +163,9 @@ const SetlistSongEdit = () => {
     <div className="relative">
       <div className="h-8">
         <Link to="/setlists">
-              <div className="absolute vertical-center top-0 right-0 text-gray-400">×</div>
+          <div className="absolute vertical-center top-0 right-0 text-gray-400">
+            ×
+          </div>
         </Link>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="mx-4">

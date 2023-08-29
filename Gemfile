@@ -78,6 +78,7 @@ group :development do
   # gem "spring"
 
   gem 'bullet'
+  gem 'erb_lint', require: false
 end
 
 group :test do

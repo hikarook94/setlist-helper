@@ -11,7 +11,23 @@
         <%= link_to '＜', songs_path(sort_by: 'artists') %>
         <%= @artist %>
       <% else %>
-        <%= select :option, :filter, options_for_select([['曲', songs_path(sort_by: 'songs')], ['アーティスト', songs_path(sort_by: 'artists')]], songs_path({sort_by: @sort_by})), {}, {onchange:"Turbo.visit(value)", class:"bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"} %>
+        <%= select(
+          :option,
+          :filter,
+          options_for_select(
+            [
+              ['曲', songs_path(sort_by: 'songs')],
+              ['アーティスト', songs_path(sort_by: 'artists')]
+            ],
+            songs_path({ sort_by: @sort_by })
+          ),
+          {},
+          {
+            onchange: 'Turbo.visit(value)',
+            class: 'bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+          }
+        ) %>
+
       <% end %>
     </div>
 
@@ -26,7 +42,7 @@
           <% @artists.each do |artist| %>
             <div class="mb-1 px-2">
               <div class="px-4 py-2 border relative w-full h-12">
-                <%= link_to artist, songs_path(filter_by: artist), class:"absolute inset-0 flex items-center left-4" %>
+                <%= link_to artist, songs_path(filter_by: artist), class: 'absolute inset-0 flex items-center left-4' %>
               </div>
             </div>
           <% end %>
