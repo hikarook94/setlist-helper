@@ -1,0 +1,17 @@
+glob: "**/*.{html,text,js}{+*,}.erb"
+exclude:
+  - '**/vendor/**/*'
+  - '**/node_modules/**/*'
+linters:
+  Rubocop:
+    enabled: true
+    rubocop_config:
+      inherit_from:
+        - .rubocop.yml
+      Style/FrozenStringLiteralComment:
+        Enabled: false
+      Layout/InitialIndentation:
+        Enabled: false
+  # generatorが自動生成したerbがこの規則に従っていないことが多いので、検証対象から外す
+  SelfClosingTag:
+    enabled: false
