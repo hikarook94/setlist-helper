@@ -15,14 +15,12 @@
       <%= yield %>
     </main>
 
-    <% if request.path.start_with?('/songs') || request.path == '/setlists' %>
-      <footer class="h-16 p-1 fixed w-full bottom-0 bg-white border">
-        <nav class="align-center flex w-full h-full">
-          <div class="pt-4 h-full w-1/2 text-center <%= 'bg-blue-300' if current_page?(songs_path) %>"><%= link_to 'レパートリー', songs_path, class: "" %></div>
-          <div class="pt-4 h-full w-1/2 text-center <%= 'bg-blue-300' if current_page?(setlists_path) %>"><%= link_to 'セットリスト', setlists_path, class: "" %></div>
-        </nav>
-      </footer>
-    <% end %>
+    <footer class="h-16 p-1 fixed w-full bottom-0 bg-white border">
+      <nav class="align-center flex w-full h-full">
+        <div class="pt-4 h-full w-1/2 text-center <%= 'bg-blue-300' if current_page?(songs_path) %>"><%= link_to 'レパートリー', songs_path, class: "" %></div>
+        <div class="pt-4 h-full w-1/2 text-center <%= 'bg-blue-300' if current_page?(setlists_path) %>"><%= link_to 'セットリスト', setlists_path, data:{turbo: false}, class: "" %></div>
+      </nav>
+    </footer>
 
   </body>
 </html>
