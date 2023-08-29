@@ -1,12 +1,12 @@
 <div class="h-screen p-4">
   <div>
-    <%= link_to '＜', songs_path, class: "text-gray-400" %>
+    <%= link_to '＜', songs_path, class: 'text-gray-400' %>
   </div>
   <div class="h-64 mb-6">
     <div class="relative">
       <div class="border h-64 w-64 -ml-32 absolute top-1/2 left-1/2">
         <% if @song.cover_img? %>
-          <%= image_tag @song.cover_img.url, size: "300x300" %>
+          <%= image_tag @song.cover_img.url, size: '300x300' %>
         <% end %>
       </div>
     </div>
@@ -38,7 +38,7 @@
   <div class="px-4 w-full mb-6">
     <p class="mb-2">メモ</p>
     <div class="border w-full h-32 px-2 py-2">
-      <%= @song.memo%>
+      <%= @song.memo %>
     </div>
   </div>
 </div>
