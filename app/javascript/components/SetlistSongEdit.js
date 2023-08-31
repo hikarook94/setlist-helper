@@ -185,7 +185,7 @@ const SetlistSongEdit = () => {
           <span>/</span>
           <span>
             <input
-              name="setlistHours"
+              id="setlistHours"
               type="number"
               {...register("setlistHours", {
                 onChange: (e) => updateSetlistHours(e),
@@ -196,7 +196,7 @@ const SetlistSongEdit = () => {
               時間
             </label>
             <input
-              name="setlistMinutes"
+              id="setlistMinutes"
               type="number"
               {...register("setlistMinutes", {
                 onChange: (e) => updateSetlistMinutes(e),
