@@ -63,7 +63,7 @@ const Repertoire = () => {
         <span>/</span>
         <span>{convertToHours(inputValues.target_duration_time)}</span>
       </div>
-      <div className="relative h-96 overflow-y-auto mb-8">
+      <div className="relative max-h-[60vh] overflow-y-auto mb-8">
         <div className="">
           <ul>
             {songs.map((song) => (

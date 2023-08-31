@@ -47,7 +47,7 @@ const Setlist = () => {
           <span>/</span>
           <span>{convertToHours(setlist.target_duration_time)}</span>
         </div>
-        <div className="relative max-h-[600px] overflow-y-auto mx-2 mb-8">
+        <div className="relative max-h-[60vh] overflow-y-auto mx-2 mb-8">
           <div className="h-full">
             <ul>
               {setlist.songs.map((song, index) => (

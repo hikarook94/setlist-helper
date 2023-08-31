@@ -29,7 +29,7 @@ const Setlists = () => {
             <div>新規作成</div>
           </Link>
         </div>
-        <div className="relative max-h-[600px] overflow-y-auto">
+        <div className="relative max-h-[60vh] overflow-y-auto">
           <div className="h-full">
             <ul>
               {setlists.map((setlist) => (

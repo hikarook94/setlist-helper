@@ -213,7 +213,7 @@ const SetlistSongEdit = () => {
             <div>曲を追加する</div>
           </Link>
         </div>
-        <div className="relative max-h-[50vh] overflow-y-auto mb-8">
+        <div className="relative max-h-[40vh] overflow-y-auto mb-8">
           <div className="h-full">
             <ul>
               {inputValues.songs.map((song) => (
