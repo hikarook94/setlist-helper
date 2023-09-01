@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      song: 曲
+      setlist: セットリスト
+    attributes:
+      song:
+        name: 曲名
+        artist: アーティスト
+        duration_time: 再生時間
+        transposition: キー

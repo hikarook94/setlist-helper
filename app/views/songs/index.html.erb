@@ -1,0 +1,65 @@
+<div class="h-screen">
+  <div class="flex relative justify-center items-center pt-6 mb-2 mx-4">
+    <h1 class="text-2xl text-center mb-4 pt-4">レパートリー</h1>
+    <div class="absolute right-6">
+      <%= link_to '+', new_song_path %>
+    </div>
+  </div>
+  <div class="p-4">
+    <div class="p-2">
+      <% if @artist %>
+        <%= link_to '＜', songs_path(sort_by: 'artists') %>
+        <%= @artist %>
+      <% else %>
+        <%= select(
+          :option,
+          :filter,
+          options_for_select(
+            [
+              ['曲', songs_path(sort_by: 'songs')],
+              ['アーティスト', songs_path(sort_by: 'artists')]
+            ],
+            songs_path({ sort_by: @sort_by })
+          ),
+          {},
+          {
+            onchange: 'Turbo.visit(value)',
+            class: 'bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+          }
+        ) %>
+
+      <% end %>
+    </div>
+
+    <% flash.each do |_, message| %>
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+        <%= message %>
+      </div>
+    <% end %>
+    <div class="relative max-h-[60vh] overflow-y-auto">
+      <div class="h-full">
+        <% if @sort_by == 'artists' %>
+          <% @artists.each do |artist| %>
+            <div class="mb-1 px-2">
+              <div class="px-4 py-2 border relative w-full h-12">
+                <%= link_to artist, songs_path(filter_by: artist), class: 'absolute inset-0 flex items-center left-4' %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <% @songs.each do |song| %>
+            <div class="mb-1 px-2 relative">
+              <div class="px-4 py-2 border w-full">
+                <p class=""><%= link_to song.name, song %></p>
+                <p class="text-gray-400 text-sm"><%= song.artist %><p>
+              </div>
+              <div class="text-gray-400 absolute top-0 right-4">
+                <p><%= link_to '×', song, data: { turbo_method: :delete } %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
