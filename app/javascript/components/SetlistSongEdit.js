@@ -185,7 +185,7 @@ const SetlistSongEdit = () => {
           <span>/</span>
           <span>
             <input
-              name="setlistHours"
+              id="setlistHours"
               type="number"
               {...register("setlistHours", {
                 onChange: (e) => updateSetlistHours(e),
@@ -196,7 +196,7 @@ const SetlistSongEdit = () => {
               時間
             </label>
             <input
-              name="setlistMinutes"
+              id="setlistMinutes"
               type="number"
               {...register("setlistMinutes", {
                 onChange: (e) => updateSetlistMinutes(e),
@@ -213,7 +213,7 @@ const SetlistSongEdit = () => {
             <div>曲を追加する</div>
           </Link>
         </div>
-        <div className="relative max-h-[50vh] overflow-y-auto mb-8">
+        <div className="relative max-h-[40vh] overflow-y-auto mb-8">
           <div className="h-full">
             <ul>
               {inputValues.songs.map((song) => (
