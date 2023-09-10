@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_18_050911) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_25_010924) do
   create_table "scores", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "song_id", null: false
     t.float "rating", null: false
@@ -25,7 +25,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_050911) do
     t.integer "target_duration_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["title"], name: "index_setlists_on_title", unique: true
   end
 
   create_table "song_setlists", charset: "utf8mb4", force: :cascade do |t|
