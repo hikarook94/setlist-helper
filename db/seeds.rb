@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-User.new(name: 'test', email: 'test@example.com', password: 'password')
+user = User.new(name: 'test', email: 'test@example.com', password: 'password')
+user.save!
 
 # artists = %w[
 #   ロックバンド
