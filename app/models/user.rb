@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :setlists
-  has_many :songs
-  has_many :scores
+  has_many :setlists, dependent: :delete_all
+  has_many :songs, dependent: :delete_all
+  has_many :scores, dependent: :delete_all
 end
