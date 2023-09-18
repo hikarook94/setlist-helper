@@ -57,6 +57,7 @@ gem 'carrierwave', '~> 3.0'
 gem 'devise'
 gem 'rails-i18n', '~> 7.0.0'
 gem 'rspotify'
+gem 'i18n_generators'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -81,6 +82,7 @@ group :development do
 
   gem 'bullet'
   gem 'erb_lint', require: false
+  gem 'letter_opener_web', '~> 2.0'
 end
 
 group :test do

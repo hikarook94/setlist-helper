@@ -9,4 +9,6 @@ class User < ApplicationRecord
   has_many :setlists, dependent: :delete_all
   has_many :songs, dependent: :delete_all
   has_many :scores, dependent: :delete_all
+
+  validates :name, uniqueness: true, presence: true
 end
