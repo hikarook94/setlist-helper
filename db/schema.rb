@@ -10,14 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_18_070217) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_18_075007) do
   create_table "scores", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "song_id", null: false
     t.float "rating", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["rating"], name: "index_scores_on_rating"
     t.index ["song_id"], name: "index_scores_on_song_id"
+    t.index ["user_id"], name: "index_scores_on_user_id"
   end
 
   create_table "setlists", charset: "utf8mb4", force: :cascade do |t|
@@ -25,6 +27,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_18_070217) do
     t.integer "target_duration_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_setlists_on_user_id"
   end
 
   create_table "song_setlists", charset: "utf8mb4", force: :cascade do |t|
@@ -47,8 +51,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_18_070217) do
     t.string "cover_img"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["name", "artist"], name: "index_songs_on_name_and_artist", unique: true
     t.index ["name"], name: "index_songs_on_name"
+    t.index ["user_id"], name: "index_songs_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
@@ -66,6 +72,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_18_070217) do
   end
 
   add_foreign_key "scores", "songs"
+  add_foreign_key "scores", "users"
+  add_foreign_key "setlists", "users"
   add_foreign_key "song_setlists", "setlists"
   add_foreign_key "song_setlists", "songs"
+  add_foreign_key "songs", "users"
 end
