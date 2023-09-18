@@ -2,7 +2,7 @@
 
 class SongsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @sort_by = params[:sort_by]
     @artist = params[:filter_by]

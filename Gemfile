@@ -54,9 +54,9 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'carrierwave', '~> 3.0'
+gem 'devise'
 gem 'rails-i18n', '~> 7.0.0'
 gem 'rspotify'
-gem 'devise'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
