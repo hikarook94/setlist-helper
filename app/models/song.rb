@@ -5,6 +5,8 @@ class Song < ApplicationRecord
   has_many :song_setlists, dependent: :destroy
   has_many :setlists, through: :song_setlists
 
+  belongs_to :user
+
   validates :name, presence: true
   validates :name, uniqueness: { scope: :artist, case_sensitive: false }
   validates :artist, presence: true
