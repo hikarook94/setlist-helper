@@ -9,27 +9,27 @@ ja:
 
     attributes:
       score:
-        rating: 評価  #g
+        rating: 得点  #g
         song: :activerecord.models.song  #g
         user: :activerecord.models.user  #g
 
       setlist:
         song_setlists: 曲のセットリスト  #g
         songs: 曲  #g
-        target_duration_time: 目標継続時間  #g
+        target_duration_time: 上限時間  #g
         title: タイトル  #g
         user: :activerecord.models.user  #g
 
       song:
         artist: アーティスト  #g
-        cover_img: 表紙画像  #g
-        duration_time: 持続時間  #g
+        cover_img: ジャケット  #g
+        duration_time: 曲の長さ  #g
         memo: メモ  #g
-        name: 名前  #g
+        name: 曲名  #g
         scores: スコア  #g
         setlists: セットリスト  #g
         song_setlists: 曲のセットリスト  #g
-        transposition: 移調  #g
+        transposition: キー  #g
         user: :activerecord.models.user  #g
 
       song_setlist:
@@ -39,8 +39,9 @@ ja:
 
       user:
         email: Eメール  #g
+        password: パスワード
         encrypted_password: 暗号化されたパスワード  #g
-        name: 名前  #g
+        name: ユーザー名  #g
         remember_created_at: で作成されたことを覚えておいてください  #g
         reset_password_sent_at: に送信されたパスワードのリセット  #g
         reset_password_token: パスワードトークンをリセットする  #g
