@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
   # Deviseコントローラーが使われる場合に、ストロングパラメーターを設定する
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def after_sign_in_path_for(resource)
+    songs_path(resource)
+  end
+
   protected
 
   # ストロングパラメーターの設定
