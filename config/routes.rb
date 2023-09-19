@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  root to: redirect('/setlists')
-  resources :songs
+  devise_for :users
+  root to: 'top#index'
+  resources :songs, path: 'repertoire'
 
   get 'setlists', to: 'setlists#index'
   get 'setlists/new', to: 'setlists#index'

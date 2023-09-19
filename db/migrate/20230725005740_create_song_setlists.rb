@@ -7,5 +7,6 @@ class CreateSongSetlists < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+    add_index :song_setlists, [:setlist_id, :position], unique: true
   end
 end

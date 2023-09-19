@@ -1,5 +1,6 @@
 <div class="h-screen">
   <div class="flex relative justify-center items-center pt-6 mb-2 mx-4">
+    <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete} %>
     <h1 class="text-2xl text-center mb-4 pt-4">レパートリー</h1>
     <div class="absolute right-6">
       <%= link_to '+', new_song_path %>
@@ -31,35 +32,34 @@
       <% end %>
     </div>
 
-    <% flash.each do |_, message| %>
-      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
-        <%= message %>
+    <% if @songs.empty? %>
+        <p>曲がまだ登録されていません。＋を押して曲を登録してみましょう</p>
+    <% else %>
+      <div class="relative max-h-[60vh] overflow-y-auto">
+        <div class="h-full">
+          <% if @sort_by == 'artists' %>
+            <% @artists.each do |artist| %>
+              <div class="mb-1 px-2">
+                <div class="px-4 py-2 border relative w-full h-12">
+                  <%= link_to artist, songs_path(filter_by: artist), class: 'absolute inset-0 flex items-center left-4' %>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <% @songs.each do |song| %>
+              <div class="mb-1 px-2 relative">
+                <div class="px-4 py-2 border w-full">
+                  <p class=""><%= link_to song.name, song %></p>
+                  <p class="text-gray-400 text-sm"><%= song.artist %><p>
+                </div>
+                <div class="text-gray-400 absolute top-0 right-4">
+                  <p><%= link_to '×', song, data: { turbo_method: :delete } %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     <% end %>
-    <div class="relative max-h-[60vh] overflow-y-auto">
-      <div class="h-full">
-        <% if @sort_by == 'artists' %>
-          <% @artists.each do |artist| %>
-            <div class="mb-1 px-2">
-              <div class="px-4 py-2 border relative w-full h-12">
-                <%= link_to artist, songs_path(filter_by: artist), class: 'absolute inset-0 flex items-center left-4' %>
-              </div>
-            </div>
-          <% end %>
-        <% else %>
-          <% @songs.each do |song| %>
-            <div class="mb-1 px-2 relative">
-              <div class="px-4 py-2 border w-full">
-                <p class=""><%= link_to song.name, song %></p>
-                <p class="text-gray-400 text-sm"><%= song.artist %><p>
-              </div>
-              <div class="text-gray-400 absolute top-0 right-4">
-                <p><%= link_to '×', song, data: { turbo_method: :delete } %></p>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
   </div>
 </div>

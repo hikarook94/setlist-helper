@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 class SongsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @sort_by = params[:sort_by]
     @artist = params[:filter_by]
     if @sort_by == 'artists'
+      @songs = []
       @artists = Song.distinct.pluck(:artist).sort
     else
       @songs = params[:filter_by].present? ? Song.where(artist: params[:filter_by]) : Song.order(name: :asc)
