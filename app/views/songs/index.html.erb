@@ -1,5 +1,6 @@
 <div class="h-screen">
   <div class="flex relative justify-center items-center pt-6 mb-2 mx-4">
+    <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete} %>
     <h1 class="text-2xl text-center mb-4 pt-4">レパートリー</h1>
     <div class="absolute right-6">
       <%= link_to '+', new_song_path %>
@@ -31,11 +32,6 @@
       <% end %>
     </div>
 
-    <% flash.each do |_, message| %>
-      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
-        <%= message %>
-      </div>
-    <% end %>
     <% if @songs.empty? %>
         <p>曲がまだ登録されていません。＋を押して曲を登録してみましょう</p>
     <% else %>
