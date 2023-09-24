@@ -1,15 +1,22 @@
-<!-- app/views/search/index.html.erb -->
-<%= form_tag search_index_path, method: :get do %>
-  <%= text_field_tag :query, params[:query] %>
-  <%= submit_tag "Search" %>
-<% end %>
+<div class="p-4">
+  <%= form_tag search_path, method: :get, class: "flex items-center space-x-2" do %>
+    <%= text_field_tag :query, params[:query], class: "p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500", placeholder: "Search..." %>
+    <%= submit_tag "Search", class: "py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+  <% end %>
 
-<% if @tracks %>
-  <ul>
-    <% @tracks.each do |track| %>
-      <li>
-        <%= track.name %> - <%= track.artists.first.name %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+  <% if @tracks %>
+    <ul class="mt-4 space-y-2">
+      <% @tracks.each do |track| %>
+        <div class="mb-1 px-2 relative">
+          <div class="px-4 py-2 border w-full">
+            <p class=""><%= track.name %></p>
+            <p class="text-gray-400 text-sm"><%= track.artists.first.name %><p>
+          </div>
+        </div>
+      <% end %>
+    </ul>
+  <% end %>
+  <div>
+    <%= link_to '手動で曲を追加する', new_song_path %>
+  </div>
+</div>
