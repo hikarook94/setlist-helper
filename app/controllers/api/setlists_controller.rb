@@ -2,7 +2,7 @@
 
 class Api::SetlistsController < ApplicationController
   def index
-    @setlists = Setlist.includes(:songs).order(created_at: :desc).all
+    @setlists = current_user.setlists.includes(:songs).order(created_at: :desc).all
     render json: @setlists.as_json(methods: %i[songs_count total_duration_time])
   end
 
@@ -12,7 +12,7 @@ class Api::SetlistsController < ApplicationController
   end
 
   def create
-    @setlist = Setlist.new(setlist_params)
+    @setlist = current_user.setlists.new(setlist_params)
 
     ActiveRecord::Base.transaction do
       @setlist.save!
@@ -68,6 +68,6 @@ class Api::SetlistsController < ApplicationController
   end
 
   def set_setlist
-    @setlist = Setlist.includes(:songs).find(params[:id])
+    @setlist = current_user.setlists.includes(:songs).find(params[:id])
   end
 end
