@@ -1,8 +1,9 @@
-class SearchController < ApplicationController
+# frozen_string_literal: true
 
+class SearchController < ApplicationController
   def index
-    if params[:query].present?
-      @tracks = RSpotify::Track.search(params[:query])
-    end
+    return if params[:query].blank?
+
+    @tracks = RSpotify::Track.search(params[:query])
   end
 end
