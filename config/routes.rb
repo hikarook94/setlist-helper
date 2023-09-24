@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'top#index'
   resources :songs, path: 'repertoire'
+  # config/routes.rb
+  resources :search, only: :index
+
 
   get 'setlists', to: 'setlists#index'
   get 'setlists/new', to: 'setlists#index'

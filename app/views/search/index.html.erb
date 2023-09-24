@@ -1,0 +1,15 @@
+<!-- app/views/search/index.html.erb -->
+<%= form_tag search_index_path, method: :get do %>
+  <%= text_field_tag :query, params[:query] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<% if @tracks %>
+  <ul>
+    <% @tracks.each do |track| %>
+      <li>
+        <%= track.name %> - <%= track.artists.first.name %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
