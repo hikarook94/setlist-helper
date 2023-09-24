@@ -8,24 +8,24 @@ class SongsController < ApplicationController
     @artist = params[:filter_by]
     if @sort_by == 'artists'
       @songs = []
-      @artists = Song.distinct.pluck(:artist).sort
+      @artists = current_user.songs.distinct.pluck(:artist).sort
     else
-      @songs = params[:filter_by].present? ? Song.where(artist: params[:filter_by]) : Song.order(name: :asc)
+      @songs = params[:filter_by].present? ? current_user.songs.where(artist: params[:filter_by]) : current_user.songs.order(name: :asc)
     end
   end
 
   def show
-    @song = Song.find(params[:id])
+    @song = current_user.songs.find(params[:id])
   end
 
   def new
-    @song = Song.new
+    @song = current_user.songs.new
   end
 
   def create
     processed_params = song_params
     processed_params[:duration_time] = to_ms(processed_params.delete(:minutes), processed_params.delete(:seconds))
-    @song = Song.new(processed_params)
+    @song = current_user.songs.build(processed_params)
 
     if @song.save
       redirect_to @song
@@ -35,11 +35,11 @@ class SongsController < ApplicationController
   end
 
   def edit
-    @song = Song.find(params[:id])
+    @song = current_user.songs.find(params[:id])
   end
 
   def update
-    @song = Song.find(params[:id])
+    @song = current_user.songs.find(params[:id])
     processed_params = song_params
     processed_params[:duration_time] = to_ms(processed_params.delete(:minutes), processed_params.delete(:seconds))
 
@@ -51,7 +51,7 @@ class SongsController < ApplicationController
   end
 
   def destroy
-    song = Song.find(params[:id])
+    song = current_user.songs.find(params[:id])
     flash[:alert] = '削除に失敗しました。' unless song.destroy
     redirect_to songs_path(query_params(URI(request.referer)))
   end
