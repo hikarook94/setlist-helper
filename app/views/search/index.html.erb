@@ -9,8 +9,9 @@
       <% @tracks.each do |track| %>
         <div class="mb-1 px-2 relative">
           <div class="px-4 py-2 border w-full">
-            <p class=""><%= track.name %></p>
-            <p class="text-gray-400 text-sm"><%= track.artists.first.name %><p>
+            <p class=""><%= track[:name] %></p>
+            <p class="text-gray-400 text-sm"><%= track[:artist] %><p>
+            <%= link_to '+', songs_path(song: track), data: { "turbo-method": :post } %>
           </div>
         </div>
       <% end %>

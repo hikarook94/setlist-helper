@@ -4,6 +4,7 @@ class SearchController < ApplicationController
   def index
     return if params[:query].blank?
 
-    @tracks = RSpotify::Track.search(params[:query])
+    raw_tracks = RSpotify::Track.search(params[:query])
+    @tracks = raw_tracks.map { |track| Song.format_track(track) }
   end
 end

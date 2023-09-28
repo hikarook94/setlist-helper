@@ -41,4 +41,16 @@ class Song < ApplicationRecord
 
     [hours, minutes]
   end
+
+  def self.format_track(track)
+    {
+      name: track.name,
+      artist: track.artists.first.name,
+      minutes: track.duration_ms / 60_000, # duration_msはミリ秒単位なので、分に変換
+      seconds: (track.duration_ms / 1000) % 60, # 残りの秒数を取得
+      memo: '',
+      cover_img: track.album.images.first['url'], # アルバムのカバー画像URL
+      transposition: 0
+    }
+  end
 end
